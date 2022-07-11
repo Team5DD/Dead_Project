@@ -61,5 +61,5 @@ crashlytics-build.properties
 ProjectSettings/
 UserSettings/
 
-VR_HorrorGame_Proj/Assets/ExternalAsset
-VR_HorrorGame_Proj/Assets/ExternalAsset.meta
+VR_HorrorGame_Proj/Assets/IgnoreAsset
+VR_HorrorGame_Proj/Assets/IgnoreAsset.meta
