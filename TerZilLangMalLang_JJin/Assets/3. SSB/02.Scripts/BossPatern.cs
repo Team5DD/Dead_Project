@@ -5,16 +5,11 @@ using UnityEngine;
 
 public class BossPatern : MonoBehaviour
 {
-    [Header("효과")]
-    public GameObject fireFactory;
-    //public GameObject windFactory;
-    //public GameObject explosionFactory;
-    //public GameObject blastFactory;
-
-    [Header("보스 죽었을때 UI")]
-    [SerializeField] GameObject Crown;
-    public GameObject SuccessUI;         //보스가 죽고 왕관조각을 얻었습니다 UI 띄우기
-    public ParticleSystem succesEfx;    //성공시 나오는 파티클
+    public static BossPatern instance;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     Animator anim;
     public Animator EfxAnim;    //자식이 애니메이터
@@ -43,20 +38,34 @@ public class BossPatern : MonoBehaviour
 
     public float AttackDistance = 2.5f;
     public float FindDistance=5.0f;
+   
+    
     float attackTime;
     float curTime;
+
+    public bool IsAttack;
+    public bool IsStrike;
 
     // Start is called before the first frame update
     void Start()
     {
+
         PlayerTarget = GameObject.Find("Player");
            anim = GetComponent<Animator>();
-        Crown.SetActive(false);
-        SuccessUI.SetActive(false);
+        UIManager.instance.GetCrowUI.SetActive(false);
+        UIManager.instance.SuccessUI.SetActive(false);
+        IsAttack = false;
+        IsStrike = false;
     }
 
     void Update()
     {
+        if (BossHP.instance.HP <= 0)
+        {
+            StopAllCoroutines();
+            state = State.Die;
+        }
+
         switch (state)
         {
             case State.Idle:
@@ -105,11 +114,13 @@ public class BossPatern : MonoBehaviour
             case 1:
                 //공격 1 패턴 - 불꽃 뿜기
                 state = State.Attack;
+                StartCoroutine("Attack");
                 break;
             case 2:
             case 3:
                 //공격 2 패턴 - 몸통 박치기
                 state = State.Strike;
+                StartCoroutine("Strike");
                 break;
         }
     
@@ -134,15 +145,17 @@ public class BossPatern : MonoBehaviour
     /// ///////////
     //공격 패턴
     
-    IEnumerator Attack()
+    IEnumerator Attack()            //불꽃뿜기
     {
         anim.SetTrigger("Attack");
         EfxAnim.SetTrigger("AttackEfx");
+
         yield return new WaitForSeconds(1f);
     }
 
-    IEnumerator Strike() 
+    IEnumerator Strike()            //몸통 박치기
     {
+        IsAttack = true;
         anim.SetTrigger("Strike");
         EfxAnim.SetTrigger("StrikeEfx");
         yield return new WaitForSeconds(1f);
@@ -153,7 +166,15 @@ public class BossPatern : MonoBehaviour
     IEnumerator Die()
     {
         anim.SetTrigger("Die");
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(1f);
+        UIManager.instance.SuccessUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        UIManager.instance.SuccessUI.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        UIManager.instance.GetCrowUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        UIManager.instance.GetCrowUI.SetActive(false);
+
     }
 
     public void TakeDamage()
