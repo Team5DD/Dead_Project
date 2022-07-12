@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HM_Fade_Manager : MonoBehaviour
 {
     public Image image;
+    public GameObject FadeUI;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class HM_Fade_Manager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1.0f);
+        Destroy(FadeUI);
         Destroy(this);
     }
 }
