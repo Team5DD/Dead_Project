@@ -8,6 +8,7 @@ public class HM_Title_Manager : MonoBehaviour
 {
     public GameObject title_UI;
     public GameObject char_Choice_UI;
+    public GameObject typing_UI;
 
     public Image image;
     public GameObject gameStart_Btn;
@@ -40,21 +41,32 @@ public class HM_Title_Manager : MonoBehaviour
 
     public void GameStart_Btn()
     {
-        StartCoroutine(FadeOut());
+        StartCoroutine(FadeOutIn());
         gameStart_Btn.SetActive(false);
     }
 
-    IEnumerator FadeOut()
+    IEnumerator FadeOutIn()
     {
         float fadeCount = 0;
         while(fadeCount < 1.0f)
         {
-            fadeCount += 0.01f;
+            fadeCount += 0.05f;
             yield return new WaitForSeconds(0.01f);
             image.color = new Color(0, 0, 0, fadeCount);
         }
 
-        yield return new WaitForSeconds(1.0f); 
-        SceneManager.LoadScene(1);
+        yield return new WaitForSeconds(1.0f);
+
+        float fadeinCount = 1;
+        while (fadeinCount > 0.0f)
+        {
+            fadeinCount -= 0.05f;
+            yield return new WaitForSeconds(0.01f);
+            image.color = new Color(0, 0, 0, fadeinCount);
+        }
+
+        yield return new WaitForSeconds(1.0f);
+        typing_UI.SetActive(true);
+        char_Choice_UI.SetActive(false);
     }
 }
