@@ -14,6 +14,7 @@ public class SpecialBomb : MonoBehaviour
     {
         this.transform.position += -transform.right * speed * Time.deltaTime;
 
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,6 +27,5 @@ public class SpecialBomb : MonoBehaviour
             BossHP.instance.HP -= getDamage_SB; // 보스의 HP 많이 까임
 
         }
-        Destroy(gameObject);
     }
 }

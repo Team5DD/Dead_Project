@@ -14,6 +14,7 @@ public class Bomb : MonoBehaviour
     {
         this.transform.position += -transform.right * speed * Time.deltaTime;
 
+
     }
 
 
@@ -29,7 +30,6 @@ public class Bomb : MonoBehaviour
             BossHP.instance.HP -= getDamage_NB; // 보스의 HP 많이 까임
 
         }
-        Destroy(gameObject);
     }
 
 }
