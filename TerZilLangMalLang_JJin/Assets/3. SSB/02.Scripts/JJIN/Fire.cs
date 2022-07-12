@@ -27,10 +27,9 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BossPatern.instance.IsAttack == true)
-        {
+     
             StartCoroutine("FireShot");
-        }
+    
     }
 
     IEnumerator FireShot()

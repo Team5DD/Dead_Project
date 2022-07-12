@@ -36,15 +36,16 @@ public class BossPatern : MonoBehaviour
 
     public GameObject PlayerTarget;
 
-    public float AttackDistance = 2.5f;
-    public float FindDistance=5.0f;
-   
-    
+    public float AttackDistance = 1.5f;
+    public float FindDistance=3.0f;
+
+    float moveSpeed = 1f;
     float attackTime;
     float curTime;
 
-    public bool IsAttack;
-    public bool IsStrike;
+    public GameObject fire;
+    public Transform FireFactory;
+    [SerializeField] int nextMove;
 
     // Start is called before the first frame update
     void Start()
@@ -54,12 +55,26 @@ public class BossPatern : MonoBehaviour
            anim = GetComponent<Animator>();
         UIManager.instance.GetCrowUI.SetActive(false);
         UIManager.instance.SuccessUI.SetActive(false);
-        IsAttack = false;
-        IsStrike = false;
+        
     }
 
     void Update()
     {
+        float Distance = PlayerTarget.transform.position.x - transform.position.x;
+
+
+     
+
+        if (Distance <= FindDistance)
+        {
+            MoveToTarget();
+            FaceTarget();
+            if (Distance <= AttackDistance)
+            {
+                state = State.Pattern;
+            }
+        }
+
         if (BossHP.instance.HP <= 0)
         {
             StopAllCoroutines();
@@ -99,6 +114,26 @@ public class BossPatern : MonoBehaviour
         }
     }
 
+    void MoveToTarget()
+    {
+        float dir = PlayerTarget.transform.position.x - transform.position.x;
+        dir = (dir < AttackDistance) ? -1 : 1;
+        transform.Translate(new Vector2(dir, 0) * moveSpeed * Time.deltaTime);
+        anim.SetTrigger("Move");
+    }
+
+    void FaceTarget()
+    {
+        if (PlayerTarget.transform.position.x - transform.position.x < 0) // Å¸°ÙÀÌ ¿ÞÂÊ¿¡ ÀÖÀ» ¶§
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else // Å¸°ÙÀÌ ¿À¸¥ÂÊ¿¡ ÀÖÀ» ¶§
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        anim.SetTrigger("Move");
+    }
 
     IEnumerator Pattern()
     {
@@ -147,24 +182,31 @@ public class BossPatern : MonoBehaviour
     
     IEnumerator Attack()            //ºÒ²É»Õ±â
     {
+
         anim.SetTrigger("Attack");
         EfxAnim.SetTrigger("AttackEfx");
 
+        FireShot();
+
         yield return new WaitForSeconds(1f);
+        state = State.Move;
     }
 
     IEnumerator Strike()            //¸öÅë ¹ÚÄ¡±â
-    {
-        IsAttack = true;
+    {    
         anim.SetTrigger("Strike");
         EfxAnim.SetTrigger("StrikeEfx");
         yield return new WaitForSeconds(1f);
+
+        state = State.Move;
     }
 
 
     ///Á×À½
     IEnumerator Die()
     {
+        StopAllCoroutines();
+
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1f);
         UIManager.instance.SuccessUI.SetActive(true);
@@ -179,10 +221,23 @@ public class BossPatern : MonoBehaviour
 
     public void TakeDamage()
     {
-        anim.SetTrigger("TakeDamage");      
+        anim.SetTrigger("TakeDamage");
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator FireShot()
+    {
+
+        GameObject Fire = Instantiate(fire);
+        Fire.transform.position = FireFactory.transform.position;
+        Fire.GetComponent<Rigidbody2D>().velocity = new Vector2(nextMove, 0);
+
+        yield return new WaitForSeconds(1f);
+        Destroy(Fire);
+
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bomb"))
         {
@@ -190,6 +245,7 @@ public class BossPatern : MonoBehaviour
             anim.SetTrigger("TakeDamage");
             Debug.Log("¹ã ¸Â°í µ¥¹ÌÁö ¾òÀ½");
             BossHP.instance.HP -= getDamage;
+            Debug.Log(BossHP.instance.HP);
         }
     }
 }
