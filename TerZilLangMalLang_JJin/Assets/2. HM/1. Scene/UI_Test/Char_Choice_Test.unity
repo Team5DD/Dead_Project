@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 887841633}
-  FadeUI: {fileID: 1350020032}
+  FadeUI: {fileID: 887841631}
 --- !u!4 &336265733
 Transform:
   m_ObjectHideFlags: 0
@@ -1970,7 +1970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1350020033
 MonoBehaviour:
   m_ObjectHideFlags: 0
