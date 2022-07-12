@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpecialBomb : MonoBehaviour
 {
     public float speed = 8f;
+    public int getDamage_SB = 25;
     void Start()
     {
     }
@@ -19,11 +20,12 @@ public class SpecialBomb : MonoBehaviour
         //수빈이 보스 스크립트
         //특수공격은 적의 HP를 많이 깜
 
-        //EnemyMove enemy = collision.GetComponent<EnemyMove>();
-        //if (enemy != null)
-        //{
-        //    enemy.TakeDamage(); // 보스의 HP 많이 까임
-        //}
-        //Destroy(gameObject);
+        BossPatern enemy = collision.GetComponent<BossPatern>();
+        if (enemy != null)
+        {
+            BossHP.instance.HP -= getDamage_SB; // 보스의 HP 많이 까임
+
+        }
+        Destroy(gameObject);
     }
 }

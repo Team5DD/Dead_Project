@@ -313,6 +313,8 @@ MonoBehaviour:
   firePositon: {fileID: 1657809867}
   nBombFactory: {fileID: 2066589153967033677, guid: ddba0d84adfce3f4782ec6181e3d078a, type: 3}
   sBombFactory: {fileID: 3410001397907015634, guid: 0ceab62988edcfc4f8ffa242b8fc572a, type: 3}
+  buttonIT: {fileID: 1385266153}
+  timer: 0
 --- !u!4 &534355411
 Transform:
   m_ObjectHideFlags: 0

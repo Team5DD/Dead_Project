@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     public float speed = 5f;
-
+    public int getDamage_NB = 10;
     void Start()
     {
     }
@@ -22,11 +22,12 @@ public class Bomb : MonoBehaviour
     {
         //수빈이 적 스크립트
         //일반공격은 적의 HP를 적게 깜
-
-        EnemyMove enemy = collision.GetComponent<EnemyMove>();
+        //BossPatern
+        BossPatern enemy = collision.GetComponent<BossPatern>();
         if (enemy != null)
         {
-            enemy.TakeDamage(); // 적의 HP 적게 까임
+            BossHP.instance.HP -= getDamage_NB; // 보스의 HP 많이 까임
+
         }
         Destroy(gameObject);
     }
