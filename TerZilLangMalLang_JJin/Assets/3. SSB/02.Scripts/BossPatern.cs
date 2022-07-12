@@ -80,7 +80,7 @@ public class BossPatern : MonoBehaviour
                 break;
 //////////////////////////////////////////////////////////
             case State.TakeDamage:
-                StartCoroutine("TakeDamage");
+                Invoke("TakeDamage", 1f);
                 break;
 
             case State.Die:
@@ -156,10 +156,9 @@ public class BossPatern : MonoBehaviour
         yield return new WaitForSeconds(1f); 
     }
 
-    IEnumerator TakeDamage()
+    public void TakeDamage()
     {
-        anim.SetTrigger("TakeDamage");
-        yield return new WaitForSeconds(1f);
+        anim.SetTrigger("TakeDamage");      
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -167,6 +166,7 @@ public class BossPatern : MonoBehaviour
         if (collision.gameObject.CompareTag("Bomb"))
         {
             //데미지 얻기
+            anim.SetTrigger("TakeDamage");
             Debug.Log("밤 맞고 데미지 얻음");
             BossHP.instance.HP -= getDamage;
         }
