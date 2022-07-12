@@ -6,13 +6,14 @@ public class EnemyMove : MonoBehaviour
     public int nextMove;
     //Animator anim;
     SpriteRenderer spriteRenderer;
-
+    
     // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
         Invoke("Think", 5);
 
     }
@@ -44,9 +45,10 @@ public class EnemyMove : MonoBehaviour
         //anim.SetInteger("WalkSpeed", nextMove);
 
         //Flip Sprite
-        if (nextMove != 0)
+        if (nextMove != 0)      
             spriteRenderer.flipX = nextMove == 1;
-
+           
+        
 
         //Recursive (재귀함수)
         float nextThinkTime = Random.Range(2f, 5f);
@@ -56,7 +58,7 @@ public class EnemyMove : MonoBehaviour
     void Turn()
     {
         nextMove *= -1;
-        spriteRenderer.flipX = nextMove == 1;
+        spriteRenderer.flipX = nextMove == 1;    
 
         CancelInvoke(); //모든 Invoke()를 멈추는 함수
         Invoke("Think", 2);
