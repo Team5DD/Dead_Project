@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using UnityEngine.SceneManagement;
+
 public class Character
 {
     public GameObject char_Img;
@@ -119,12 +121,14 @@ public class Character_Choice_Manager : MonoBehaviour
             {
                 Character charf = characterChoice[i];
                 charf.char_Img.SetActive(false);
+                
             }
         }
         //character_Img[selectCharCount].SetActive(true);
         Character charf1 = characterChoice[selectCharCount];
         charf1.char_Img.SetActive(true);
         gameStart.interactable = false;
+        
     }
 
     public void RightBtn_Clik()
@@ -162,7 +166,13 @@ public class Character_Choice_Manager : MonoBehaviour
             Save_PlayerChoice.instance.save_nft_Number = choiceNow.nft_Number;
 
             gameStart.interactable = true;
+            Save_PlayerChoice.instance.char_Prefeb_Choice = Save_PlayerChoice.instance.char_Prefeb[selectCharCount];
         }
+    }
+
+    public void GameStart_Clik()
+    {
+        SceneManager.LoadScene(2);
     }
 
     public void Debug_StageClear_Clik()

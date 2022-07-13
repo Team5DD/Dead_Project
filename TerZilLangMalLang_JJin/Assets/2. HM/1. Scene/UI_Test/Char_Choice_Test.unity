@@ -919,8 +919,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7d6e6e5e4c2be2241876d692b8ddf7d1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1996,6 +1996,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf284c2b99c362248b53e7a61ae333e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  char_Prefeb:
+  - {fileID: 21300000, guid: a89dd0953671fe340bf8794b82c43692, type: 3}
+  - {fileID: 21300000, guid: 76b253e45ef0a8447b1c601353c1e4ef, type: 3}
+  - {fileID: 21300000, guid: a83618e9828821245b0a4a5051bed7ab, type: 3}
+  - {fileID: 21300000, guid: d0595182b31054b44a4eda67359b28e7, type: 3}
+  - {fileID: 21300000, guid: a3a2f541e64b2e146bfec576601c00ba, type: 3}
+  char_Prefeb_Choice: {fileID: 0}
   save_char_Img: {fileID: 0}
   save_char_Name: 
   save_nft_Number: 0
@@ -2161,7 +2168,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1136546743}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 23601592}
+        m_TargetAssemblyTypeName: Character_Choice_Manager, Assembly-CSharp
+        m_MethodName: GameStart_Clik
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1136546743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,8 +2201,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7d6e6e5e4c2be2241876d692b8ddf7d1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2487,8 +2506,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7d6e6e5e4c2be2241876d692b8ddf7d1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3028,8 +3047,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7d6e6e5e4c2be2241876d692b8ddf7d1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
