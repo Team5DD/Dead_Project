@@ -31,8 +31,23 @@ public class Character_Choice_Manager : MonoBehaviour
     public TextMeshProUGUI debug_Name;
     public TextMeshProUGUI debug_Nft_Number;
     public TextMeshProUGUI debug_concept;
+    public TextMeshProUGUI debug_stageClear;
 
     public Button gameStart;
+
+    public Image dragon2_image;
+    public Image dragon3_image;
+    public Image dragon4_image;
+    public Image dragon5_image;
+    public Image[] crown_Image;
+    //public Image crown2_Image;
+    //public Image crown3_Image;
+    //public Image crown4_Image;
+                             
+    public Sprite[] drangons;
+    public Sprite[] crowns;
+
+    int debug_num = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -44,34 +59,63 @@ public class Character_Choice_Manager : MonoBehaviour
         string name;
 
         name = "ø¯¥ı µÂ∑°∞Ô";
-        characterChoice.Add(0, new Character(character_Img[0], name, 1234523,"≥Î∑©¿Ã"));
-
+        characterChoice.Add(0, new Character(character_Img[0], name, 1234523, "≥Î∑©¿Ã"));
         name = "ø£¡© µÂ∑°∞Ô";
-        characterChoice.Add(1, new Character(character_Img[1], name, 323451,"∞À»Ú¥Û¿Ã"));
-
+        characterChoice.Add(1, new Character(character_Img[1], name, 323451, "∞À»Ú¥Û¿Ã"));
         name = "¿ß≥  µÂ∑°∞Ô";
-        characterChoice.Add(2, new Character(character_Img[2], name, 544353,"∞À¥Û¿Ãπ´¡ˆ∞≥"));
-
+        characterChoice.Add(2, new Character(character_Img[2], name, 544353, "∞À¥Û¿Ãπ´¡ˆ∞≥"));
         name = "∫£∏Æ µÂ∑°∞Ô";
-        characterChoice.Add(3, new Character(character_Img[3], name, 54634,"«Œ≈©«ŒƒÌ"));
-
+        characterChoice.Add(3, new Character(character_Img[3], name, 54634, "«Œ≈©«ŒƒÌ"));
         name = "¡ˆ¥œ µÂ∑°∞Ô";
-        characterChoice.Add(4, new Character(character_Img[4], name, 987654,"∆€∑©¿Ã"));
+        characterChoice.Add(4, new Character(character_Img[4], name, 987654, "∆€∑©¿Ã"));
+    }
 
-       
+    private void Update()
+    {
+        if (Save_PlayerChoice.instance.isClear_1 == true)
+        {
+            dragon2_image.sprite = drangons[1];
+            crown_Image[0].sprite = crowns[0];
+            debug_stageClear.text = "Stage 1 ≈¨∏ÆæÓ";
+            Save_PlayerChoice.instance.save_StageClear = 1;
+        }
+
+        if (Save_PlayerChoice.instance.isClear_2 == true)
+        {
+            dragon3_image.sprite = drangons[2];
+            crown_Image[1].sprite = crowns[1];
+            debug_stageClear.text = "Stage 2 ≈¨∏ÆæÓ";
+            Save_PlayerChoice.instance.save_StageClear = 2;
+        }
+
+        if (Save_PlayerChoice.instance.isClear_3 == true)
+        {
+            dragon4_image.sprite = drangons[3];
+            crown_Image[2].sprite = crowns[2];
+            debug_stageClear.text = "Stage 3 ≈¨∏ÆæÓ";
+            Save_PlayerChoice.instance.save_StageClear = 3;
+        }
+
+        if (Save_PlayerChoice.instance.isClear_4 == true)
+        {
+            dragon5_image.sprite = drangons[4];
+            crown_Image[3].sprite = crowns[3];
+            debug_stageClear.text = "Stage 4 ≈¨∏ÆæÓ";
+            Save_PlayerChoice.instance.save_StageClear = 4;
+        }
     }
 
     public void LeftBtn_Clik()
     {
-        selectCharCount--;                              
-        if(selectCharCount < 0)
+        selectCharCount--;
+        if (selectCharCount < 0)
         {
             selectCharCount += 4;
         }
         for (int i = 0; i < 4; i++)
         {
             //character_Img[i].SetActive(false);
-            if(characterChoice.ContainsKey(i))
+            if (characterChoice.ContainsKey(i))
             {
                 Character charf = characterChoice[i];
                 charf.char_Img.SetActive(false);
@@ -105,7 +149,7 @@ public class Character_Choice_Manager : MonoBehaviour
 
     public void ChoiceBtn_Clik()
     {
-        if(characterChoice.ContainsKey(selectCharCount))
+        if (characterChoice.ContainsKey(selectCharCount))
         {
             Character choiceNow = characterChoice[selectCharCount];
             debug_Name.text = $"µπˆ±◊ ¿Ã∏ß : {choiceNow.name}";
@@ -118,6 +162,28 @@ public class Character_Choice_Manager : MonoBehaviour
             Save_PlayerChoice.instance.save_nft_Number = choiceNow.nft_Number;
 
             gameStart.interactable = true;
+        }
+    }
+
+    public void Debug_StageClear_Clik()
+    {
+        debug_num++;
+
+        if (debug_num == 1)
+        {
+            Save_PlayerChoice.instance.isClear_1 = true;
+        }
+        else if (debug_num == 2)
+        {
+            Save_PlayerChoice.instance.isClear_2 = true;
+        }
+        else if (debug_num == 3)
+        {
+            Save_PlayerChoice.instance.isClear_3 = true;
+        }
+        else if (debug_num == 4)
+        {
+            Save_PlayerChoice.instance.isClear_4 = true;
         }
     }
 }
