@@ -26,6 +26,8 @@ public class Character
 
 public class Character_Choice_Manager : MonoBehaviour
 {
+    GameObject findobject;
+    public GameObject savePrefeb;
     public GameObject[] character_Img; // Ä³¸¯ÅÍ ÀÌ¹ÌÁö ¹è¿­
     public GameObject[] character_Info;
     public GameObject dark_Ticket;
@@ -43,30 +45,38 @@ public class Character_Choice_Manager : MonoBehaviour
     public Image dragon4_image;
     public Image dragon5_image;
     public Image[] crown_Image;
-                             
+
     public Sprite[] drangons;
     public Sprite[] crowns;
 
     public int debug_StageClear = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         character_Img[selectCharCount].SetActive(true); // 0¹ø Ä³¸¯ÅÍ ÀÌ¹ÌÁö È°¼ºÈ­
-        character_Info[selectCharCount].SetActive(true); 
+        character_Info[selectCharCount].SetActive(true);
         characterChoice = new Dictionary<int, Character>();
 
         string name;
 
         name = "¿ø´õ µå·¡°ï";
-        characterChoice.Add(0, new Character(character_Img[0],character_Info[0], name, 1234523, "³ë·©ÀÌ"));
+        characterChoice.Add(0, new Character(character_Img[0], character_Info[0], name, 1234523, "³ë·©ÀÌ"));
         name = "¿£Á© µå·¡°ï";
-        characterChoice.Add(1, new Character(character_Img[1],character_Info[1], name, 323451, "°ËÈò´óÀÌ"));
+        characterChoice.Add(1, new Character(character_Img[1], character_Info[1], name, 323451, "°ËÈò´óÀÌ"));
         name = "À§³Ê µå·¡°ï";
-        characterChoice.Add(2, new Character(character_Img[2],character_Info[2], name, 544353, "°Ë´óÀÌ¹«Áö°³"));
+        characterChoice.Add(2, new Character(character_Img[2], character_Info[2], name, 544353, "°Ë´óÀÌ¹«Áö°³"));
         name = "º£¸® µå·¡°ï";
-        characterChoice.Add(3, new Character(character_Img[3],character_Info[3], name, 54634, "ÇÎÅ©ÇÎÄí"));
+        characterChoice.Add(3, new Character(character_Img[3], character_Info[3], name, 54634, "ÇÎÅ©ÇÎÄí"));
         name = "Áö´Ï µå·¡°ï";
-        characterChoice.Add(4, new Character(character_Img[4],character_Info[4], name, 987654, "ÆÛ·©ÀÌ"));
+        characterChoice.Add(4, new Character(character_Img[4], character_Info[4], name, 987654, "ÆÛ·©ÀÌ"));
+
+        findobject = GameObject.Find("Player_Choice_Save(Clone)");
+        if (findobject == null)
+        {
+            GameObject saveFile = Instantiate(savePrefeb);
+            saveFile.transform.position = new Vector3(0, 0, 0);
+        }
     }
 
     private void Update()
@@ -80,7 +90,7 @@ public class Character_Choice_Manager : MonoBehaviour
             crown_Image[0].sprite = crowns[0];
             Save_PlayerChoice.instance.save_StageClear = 1;
 
-            if(selectCharCount > 1)
+            if (selectCharCount > 1)
             {
                 print("°ÅºÎ");
                 gameStart.interactable = false;
@@ -92,7 +102,7 @@ public class Character_Choice_Manager : MonoBehaviour
             }
         }
 
-         if (Save_PlayerChoice.instance.isClear_2 == true)
+        if (Save_PlayerChoice.instance.isClear_2 == true)
         {
             crownCount = 2;
             dragon3_image.sprite = drangons[2];
@@ -109,7 +119,7 @@ public class Character_Choice_Manager : MonoBehaviour
             }
         }
 
-         if(Save_PlayerChoice.instance.isClear_3 == true)
+        if (Save_PlayerChoice.instance.isClear_3 == true)
         {
             crownCount = 3;
             dragon4_image.sprite = drangons[3];
@@ -126,7 +136,7 @@ public class Character_Choice_Manager : MonoBehaviour
             }
         }
 
-         if(Save_PlayerChoice.instance.isClear_4 == true)
+        if (Save_PlayerChoice.instance.isClear_4 == true)
         {
             crownCount = 4;
             dragon5_image.sprite = drangons[4];
@@ -134,7 +144,7 @@ public class Character_Choice_Manager : MonoBehaviour
             Save_PlayerChoice.instance.save_StageClear = 4;
             dark_Ticket.SetActive(false);
         }
-        if(Save_PlayerChoice.instance.isClear_1 == false)
+        if (Save_PlayerChoice.instance.isClear_1 == false)
         {
             if (selectCharCount > 0)
             {
@@ -167,7 +177,7 @@ public class Character_Choice_Manager : MonoBehaviour
         Character charf1 = characterChoice[selectCharCount];
         charf1.char_Img.SetActive(true);
         charf1.char_Info.SetActive(true);
-        
+
     }
 
     public void RightBtn_Clik()
@@ -210,10 +220,10 @@ public class Character_Choice_Manager : MonoBehaviour
     {
         debug_StageClear++;
 
-        if(debug_StageClear == 1)       Save_PlayerChoice.instance.isClear_1 = true;
-        else if(debug_StageClear == 2)  Save_PlayerChoice.instance.isClear_2 = true;
-        else if(debug_StageClear == 3)  Save_PlayerChoice.instance.isClear_3 = true;
-        else if(debug_StageClear == 4)  Save_PlayerChoice.instance.isClear_4 = true;
+        if (debug_StageClear == 1) Save_PlayerChoice.instance.isClear_1 = true;
+        else if (debug_StageClear == 2) Save_PlayerChoice.instance.isClear_2 = true;
+        else if (debug_StageClear == 3) Save_PlayerChoice.instance.isClear_3 = true;
+        else if (debug_StageClear == 4) Save_PlayerChoice.instance.isClear_4 = true;
 
     }
 }
