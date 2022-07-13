@@ -13,16 +13,20 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 	public float Horizontal	=> touchPosition.x;
 	public float Vertical => touchPosition.y;
 
+	GameObject player;
 	SpriteRenderer sr;
 
 	private void Awake()
 	{
 		imageBackground = GetComponent<Image>();
 		imageController	= transform.GetChild(0).GetComponent<Image>();
-		sr = GetComponent<SpriteRenderer>();
-	}
 
-	/// <summary>
+		player = GameObject.Find("Player");			//			[ 이현민 ] 
+		sr = player.GetComponent<SpriteRenderer>();	// 에러가 났던 이유는 이 스크립트가 플레이어에 붙어있는게 아니라
+		//sr = GetComponent<SpriteRenderer>();		// 스크립트를 통해서 불러오는거라 그랬던 거였어 
+	}												// 그래서 Player 게임 오브젝트를 가져오고 그 스프라이트렌더러 컴포넌트를 가져왔어
+													
+	/// <summary>									
 	/// 터치하는 순간 1회 호출
 	/// </summary>
 	public void OnPointerDown(PointerEventData eventData)
@@ -58,12 +62,14 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 			//만약 중심(0)보다 작다면 왼쪽을 바라본다.
 			if (touchPosition.x <= 0)
 			{
+				sr.flipX = false;	
 				//왼쪽 이미지= flip off
 			}
 			else if (touchPosition.x > 0)
-			{ 
+			{
+				sr.flipX = true;
 				//오른쪽 이미지 = flip on
-				// 이현민 고치고 가다... 에러나서 작업이 안되버렸잔너~~~
+				
 			}
 
 			//만약 중심(0)보다 크다면 오른쪽을 바라본다.
