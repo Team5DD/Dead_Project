@@ -58,10 +58,7 @@ public class BossPatern : MonoBehaviour
         Capsule.SetActive(false);
 
     }
-    IEnumerator abc()
-    {
-        yield
-    }
+   
     void Update()
     {
         // Distance = PlayerTarget.transform.position.x - transform.position.x;

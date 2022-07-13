@@ -56,13 +56,14 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 			touchPosition = new Vector2(touchPosition.x * 2 - 1, touchPosition.y * 2 - 1);
 
 			//만약 중심(0)보다 작다면 왼쪽을 바라본다.
-			if (touchPosition <= 0)
+			if (touchPosition.x <= 0)
 			{
 				//왼쪽 이미지= flip off
 			}
-			else if (touchPosition > 0)
+			else if (touchPosition.x > 0)
 			{ 
 				//오른쪽 이미지 = flip on
+				// 이현민 고치고 가다... 에러나서 작업이 안되버렸잔너~~~
 			}
 
 			//만약 중심(0)보다 크다면 오른쪽을 바라본다.
