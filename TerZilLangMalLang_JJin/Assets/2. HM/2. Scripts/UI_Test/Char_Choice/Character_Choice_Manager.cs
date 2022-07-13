@@ -27,7 +27,10 @@ public class Character
 public class Character_Choice_Manager : MonoBehaviour
 {
     public GameObject[] character_Img; // 캐릭터 이미지 배열
-    public GameObject[] character_Info; 
+    public GameObject[] character_Info;
+    public GameObject dark_Ticket;
+    public TextMeshProUGUI crown_NUM;
+    public int crownCount = 0;
     public int selectCharCount = 0;           // 캐릭터 선택 번호
     int getKeyNum;
 
@@ -68,14 +71,11 @@ public class Character_Choice_Manager : MonoBehaviour
 
     private void Update()
     {
-        print($"1:{Save_PlayerChoice.instance.isClear_1}");
-        print($"2:{Save_PlayerChoice.instance.isClear_2}");
-        print($"3:{Save_PlayerChoice.instance.isClear_3}");
-        print($"4:{Save_PlayerChoice.instance.isClear_4}");
-
+        crown_NUM.text = $"{crownCount}";
         #region 스테이지 클리어시 이미지 변경
         if (Save_PlayerChoice.instance.isClear_1 == true)
         {
+            crownCount = 1;
             dragon2_image.sprite = drangons[1];
             crown_Image[0].sprite = crowns[0];
             Save_PlayerChoice.instance.save_StageClear = 1;
@@ -94,6 +94,7 @@ public class Character_Choice_Manager : MonoBehaviour
 
          if (Save_PlayerChoice.instance.isClear_2 == true)
         {
+            crownCount = 2;
             dragon3_image.sprite = drangons[2];
             crown_Image[1].sprite = crowns[1];
             Save_PlayerChoice.instance.save_StageClear = 2;
@@ -110,6 +111,7 @@ public class Character_Choice_Manager : MonoBehaviour
 
          if(Save_PlayerChoice.instance.isClear_3 == true)
         {
+            crownCount = 3;
             dragon4_image.sprite = drangons[3];
             crown_Image[2].sprite = crowns[2];
             Save_PlayerChoice.instance.save_StageClear = 3;
@@ -126,10 +128,11 @@ public class Character_Choice_Manager : MonoBehaviour
 
          if(Save_PlayerChoice.instance.isClear_4 == true)
         {
+            crownCount = 4;
             dragon5_image.sprite = drangons[4];
             crown_Image[3].sprite = crowns[3];
             Save_PlayerChoice.instance.save_StageClear = 4;
-
+            dark_Ticket.SetActive(false);
         }
         if(Save_PlayerChoice.instance.isClear_1 == false)
         {
@@ -154,7 +157,6 @@ public class Character_Choice_Manager : MonoBehaviour
         }
         for (int i = 0; i < 5; i++)
         {
-            //character_Img[i].SetActive(false);
             if (characterChoice.ContainsKey(i))
             {
                 Character charf = characterChoice[i];
@@ -162,7 +164,6 @@ public class Character_Choice_Manager : MonoBehaviour
                 charf.char_Info.SetActive(false);
             }
         }
-        //character_Img[selectCharCount].SetActive(true);
         Character charf1 = characterChoice[selectCharCount];
         charf1.char_Img.SetActive(true);
         charf1.char_Info.SetActive(true);
@@ -176,7 +177,6 @@ public class Character_Choice_Manager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            //character_Img[i].SetActive(false);
             if (characterChoice.ContainsKey(i))
             {
                 Character charf = characterChoice[i];
@@ -184,7 +184,6 @@ public class Character_Choice_Manager : MonoBehaviour
                 charf.char_Info.SetActive(false);
             }
         }
-        //character_Img[selectCharCount].SetActive(true);
         Character charf1 = characterChoice[selectCharCount];
         charf1.char_Img.SetActive(true);
         charf1.char_Info.SetActive(true);
