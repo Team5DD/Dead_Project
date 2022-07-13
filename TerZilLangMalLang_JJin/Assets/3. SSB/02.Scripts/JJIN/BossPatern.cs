@@ -43,9 +43,10 @@ public class BossPatern : MonoBehaviour
     float attackTime;
     float curTime;
 
-    public GameObject fire;
-    public Transform FireFactory;
     [SerializeField] int nextMove;
+    public GameObject FireFactory;
+    public Transform FirePosiotion;
+    public float Distance;
 
     // Start is called before the first frame update
     void Start()
@@ -55,21 +56,22 @@ public class BossPatern : MonoBehaviour
            anim = GetComponent<Animator>();
         UIManager.instance.GetCrowUI.SetActive(false);
         UIManager.instance.SuccessUI.SetActive(false);
-        
+        Distance= PlayerTarget.transform.position.x - transform.position.x;
+
     }
 
     void Update()
     {
-        float Distance = PlayerTarget.transform.position.x - transform.position.x;
+         Distance = PlayerTarget.transform.position.x - transform.position.x;
 
 
      
 
-        if (Distance <= FindDistance)
+        if (Mathf.Abs(Distance) <= Mathf.Abs(FindDistance))
         {
             MoveToTarget();
             FaceTarget();
-            if (Distance <= AttackDistance)
+            if (Mathf.Abs(Distance) <= Mathf.Abs(AttackDistance))
             {
                 state = State.Pattern;
             }
@@ -116,10 +118,16 @@ public class BossPatern : MonoBehaviour
 
     void MoveToTarget()
     {
-        float dir = PlayerTarget.transform.position.x - transform.position.x;
-        dir = (dir < AttackDistance) ? -1 : 1;
-        transform.Translate(new Vector2(dir, 0) * moveSpeed * Time.deltaTime);
-        anim.SetTrigger("Move");
+
+        if (Mathf.Abs(Distance) <= Mathf.Abs(FindDistance))
+        {
+           
+            float dir = PlayerTarget.transform.position.x - transform.position.x;
+            dir = (dir < AttackDistance) ? -1 : 1;
+            transform.Translate(new Vector2(dir, 0) * moveSpeed * Time.deltaTime);
+            anim.SetTrigger("Move");
+        }
+     
     }
 
     void FaceTarget()
@@ -186,10 +194,9 @@ public class BossPatern : MonoBehaviour
         anim.SetTrigger("Attack");
         EfxAnim.SetTrigger("AttackEfx");
 
-        FireShot();
+        StartCoroutine("FireShot");
 
-        yield return new WaitForSeconds(1f);
-        state = State.Move;
+        yield return new WaitForSeconds(1f);    
     }
 
     IEnumerator Strike()            //¸öÅë ¹ÚÄ¡±â
@@ -197,8 +204,6 @@ public class BossPatern : MonoBehaviour
         anim.SetTrigger("Strike");
         EfxAnim.SetTrigger("StrikeEfx");
         yield return new WaitForSeconds(1f);
-
-        state = State.Move;
     }
 
 
@@ -227,12 +232,13 @@ public class BossPatern : MonoBehaviour
     IEnumerator FireShot()
     {
 
-        GameObject Fire = Instantiate(fire);
-        Fire.transform.position = FireFactory.transform.position;
+        //Destroy(Fire);
+
+        GameObject Fire = Instantiate(FireFactory);
+        Fire.transform.position = FirePosiotion.transform.position;
         Fire.GetComponent<Rigidbody2D>().velocity = new Vector2(nextMove, 0);
 
         yield return new WaitForSeconds(1f);
-        Destroy(Fire);
 
     }
 
