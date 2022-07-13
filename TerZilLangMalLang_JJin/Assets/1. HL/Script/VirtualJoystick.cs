@@ -13,10 +13,13 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 	public float Horizontal	=> touchPosition.x;
 	public float Vertical => touchPosition.y;
 
+	SpriteRenderer sr;
+
 	private void Awake()
 	{
 		imageBackground = GetComponent<Image>();
 		imageController	= transform.GetChild(0).GetComponent<Image>();
+		sr = GetComponent<SpriteRenderer>();
 	}
 
 	/// <summary>
@@ -51,6 +54,18 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 			// 아래(-1), 중심(0), 위(1)로 변경하기 위해 touchPosition.y*2-1
 			// 이 수식은 Pivot에 따라 달라진다. (좌하단 Pivot 기준)
 			touchPosition = new Vector2(touchPosition.x * 2 - 1, touchPosition.y * 2 - 1);
+
+			//만약 중심(0)보다 작다면 왼쪽을 바라본다.
+			if (touchPosition <= 0)
+			{
+				//왼쪽 이미지= flip off
+			}
+			else if (touchPosition > 0)
+			{ 
+				//오른쪽 이미지 = flip on
+			}
+
+			//만약 중심(0)보다 크다면 오른쪽을 바라본다.
 
 			// touchPosition 값의 정규화 [-1 ~ 1]
 			// 가상 조이스틱 배경 이미지 밖으로 터치가 나가게 되면 -1 ~ 1보다 큰 값이 나올 수 있다

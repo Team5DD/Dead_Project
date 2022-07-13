@@ -7,41 +7,84 @@ public class Fire : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        rigid = GetComponent<Rigidbody2D>();
+        StartCoroutine(GainPowerTimer());
+        StartCoroutine(GainPower());
     }
 
-    public GameObject FireFactory;
-    public Transform FirePosiotion;
-
     Rigidbody2D rigid;
-    [Header("불꽃이 닿을 범위")]
-    public int nextMove;
+    float angularPower = 2;
+    float scaleValue = 0.1f;
+    bool isShot;
+
+    public float myTime = 5f;
+    float curTime;
+    public GameObject PlayerTarget;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        nextMove = 5;
-        
+        PlayerTarget = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-     
-            StartCoroutine("FireShot");
-    
+        curTime += Time.deltaTime;
+        if (myTime < curTime)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
-    IEnumerator FireShot()
+    void FaceTarget()
     {
+        if (PlayerTarget.transform.position.x - transform.position.x < 0) // 타겟이 왼쪽에 있을 때
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else // 타겟이 오른쪽에 있을 때
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
 
-        GameObject Fire = Instantiate(FireFactory);
-        Fire.transform.position = FirePosiotion.transform.position;
-        Fire.GetComponent<Rigidbody2D>().velocity = new Vector2(nextMove, 0);
 
-        yield return new WaitForSeconds(3f);
+    IEnumerator GainPowerTimer()
+    {
+        yield return new WaitForSeconds(2.2f);
+        isShot = true;
 
     }
 
+    IEnumerator GainPower()
+    {
+        FaceTarget();
+        while (!isShot)
+        {
+            //원래 값
+            //angularPower += 0.02f;
+            //scaleValue += 0.005f;
+            angularPower += 0.02f;
+            scaleValue += 0.02f;
+            //transform.localScale = Vector2.one;
+            rigid.AddForce(Vector2.right * 0.5f, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(1f);
+            Destroy(this.gameObject);
+
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
 }
