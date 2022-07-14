@@ -16,12 +16,14 @@ public class HM_Title_Manager : MonoBehaviour
 
     public Image image;
     public GameObject gameStart_Btn;
+
     
     bool titleOff = false;
 
     // Start is called before the first frame update
     void Start()
     {
+
         findobject = GameObject.Find("Player_Choice_Save(Clone)");
         if (findobject == null)
         {

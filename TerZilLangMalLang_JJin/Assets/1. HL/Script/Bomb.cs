@@ -6,13 +6,18 @@ public class Bomb : MonoBehaviour
 {
     public float speed = 5f;
     public int getDamage_NB = 10;
+
+    GameObject player;
     void Start()
     {
+        player = GameObject.Find("Player");
     }
 
     void Update()
     {
-        this.transform.position += -transform.right * speed * Time.deltaTime;
+        
+
+        this.transform.position += -player.transform.right * speed * Time.deltaTime;
 
 
     }

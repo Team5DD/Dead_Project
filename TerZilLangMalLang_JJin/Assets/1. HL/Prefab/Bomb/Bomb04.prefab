@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7624571390087727478}
   - component: {fileID: 8651437601655696177}
-  - component: {fileID: 1155361597097198168}
+  - component: {fileID: 1754916068396093012}
   - component: {fileID: 4982704907962957021}
   m_Layer: 0
   m_Name: Bomb04
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2914058647173303988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.2795913, y: 3.2795913, z: 3.2795913}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &8651437601655696177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1155361597097198168
+--- !u!114 &1754916068396093012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fce89a633924ff4ebec8f85581d327e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 5
   getDamage_NB: 10
 --- !u!95 &4982704907962957021
 Animator:

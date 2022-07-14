@@ -56,35 +56,40 @@ public class Bombmanager : MonoBehaviour
 
         if (PlayerTag.gameObject.CompareTag("Yellow") == true)
         {
-            GameObject bomb = Instantiate(nBombFactory[0], firePositon);
+            GameObject bomb = Instantiate(nBombFactory[0]);
+            bomb.transform.position = firePositon.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
         }
         if (PlayerTag.gameObject.CompareTag("Half") == true)
         {
-            GameObject bomb = Instantiate(nBombFactory[1], firePositon);
+            GameObject bomb = Instantiate(nBombFactory[1]);
+            bomb.transform.position = firePositon.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
         }
         if (PlayerTag.gameObject.CompareTag("Blackjoy") == true)
         {
-            GameObject bomb = Instantiate(nBombFactory[2], firePositon);
+            GameObject bomb = Instantiate(nBombFactory[2]);
+            bomb.transform.position = firePositon.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
         }
         if (PlayerTag.gameObject.CompareTag("Blue") == true)
         {
-            GameObject bomb = Instantiate(nBombFactory[3], firePositon);
+            GameObject bomb = Instantiate(nBombFactory[3]);
+            bomb.transform.position = firePositon.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
         }
         if (PlayerTag.gameObject.CompareTag("Pink") == true)
         {
-            GameObject bomb = Instantiate(nBombFactory[4], firePositon);
+            GameObject bomb = Instantiate(nBombFactory[4]);
+            bomb.transform.position = firePositon.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
@@ -94,7 +99,41 @@ public class Bombmanager : MonoBehaviour
 
     public void OnButtonDownSpecial()
     {
-        GameObject SPbomb = Instantiate(nBombFactory[0], firePositon);
+        if (PlayerTag.gameObject.CompareTag("Yellow") == true)
+        {
+            GameObject bomb = Instantiate(sBombFactory[0]);
+            bomb.transform.position = firePositon.position + new Vector3(0,1.5f,0);
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Half") == true)
+        {
+            GameObject bomb = Instantiate(sBombFactory[1]);
+            bomb.transform.position = firePositon.position;
+            
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Blackjoy") == true)
+        {
+            GameObject bomb = Instantiate(sBombFactory[2]);
+            bomb.transform.position = firePositon.position;
+          
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Blue") == true)
+        {
+            GameObject bomb = Instantiate(sBombFactory[3]);
+            bomb.transform.position = firePositon.position;
+
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Pink") == true)
+        {
+            GameObject bomb = Instantiate(sBombFactory[4]);
+            bomb.transform.position = firePositon.position;
+ 
+
+        }
+
         buttonIT.interactable = false;
         ClickBntSB = true;
         //만약 눌렸다면, 비활성화한다. 4초동안

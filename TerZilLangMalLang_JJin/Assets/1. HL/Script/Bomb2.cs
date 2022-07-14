@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecialBomb : MonoBehaviour
+public class Bomb2 : MonoBehaviour
 {
-    public float speed = 8f;
-    public int getDamage_SB = 25;
+    public float speed = 5f;
+    public int getDamage_NB = 10;
     void Start()
     {
     }
@@ -16,14 +16,18 @@ public class SpecialBomb : MonoBehaviour
 
 
     }
+
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //수빈이 보스 스크립트
-        //특수공격은 적의 HP를 많이 깜
+        //수빈이 적 스크립트
+        //일반공격은 적의 HP를 적게 깜
+        //BossPatern
         BossPatern enemy = collision.GetComponent<BossPatern>();
         if (enemy != null)
         {
-            BossHP.instance.HP -= getDamage_SB; // 보스의 HP 많이 까임
+            BossHP.instance.HP -= getDamage_NB; // 보스의 HP 많이 까임
 
         }
     }
