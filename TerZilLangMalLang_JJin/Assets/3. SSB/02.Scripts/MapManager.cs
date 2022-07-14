@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     }
 
     public GameObject[] ColBox;
+    public Animator[] ColBoxAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,11 @@ public class MapManager : MonoBehaviour
     IEnumerator _OnColBox()
     {
         yield return new WaitForSeconds(0.1f);
+        CameraShake.instance.ShakeCamera(0.5f, 1f);
+        for (int k= 0; k < ColBoxAnim.Length; k++)
+        {
+            ColBoxAnim[k].SetTrigger("ColBox");
+        }
         for (int i = 0; i < ColBox.Length; i++)
         {
             yield return new WaitForSeconds(0.2f);
@@ -50,6 +56,11 @@ public void OffColBox()
     {
 
         yield return new WaitForSeconds(0.1f);
+        CameraShake.instance.ShakeCamera(0.5f, 1f);
+        for (int k = 0; k < ColBoxAnim.Length; k++)
+        {
+            ColBoxAnim[k].SetTrigger("ColBox");
+        }
         for (int i = 0; i < ColBox.Length; i++)
         {
             yield return new WaitForSeconds(0.2f);

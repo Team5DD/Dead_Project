@@ -37,7 +37,7 @@ public class EnemyMove : MonoBehaviour
         //Move
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
         //Platform Check
-        Vector2 frontVec = new Vector2(rigid.position.x + (nextMove/nextMove), rigid.position.y);
+        Vector2 frontVec = new Vector2(rigid.position.x + nextMove, rigid.position.y);
         Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 5, LayerMask.GetMask("Floor"));
 
