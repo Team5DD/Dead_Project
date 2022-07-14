@@ -21,12 +21,7 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 	{
 		imageBackground = GetComponent<Image>();
 		imageController	= transform.GetChild(0).GetComponent<Image>();
-<<<<<<< Updated upstream
-=======
-		sr = GetComponent<SpriteRenderer>();
-		Player = GameObject.FindWithTag("Player");
-	}
->>>>>>> Stashed changes
+
 
 		player = GameObject.Find("Player");			//			[ 이현민 ] 
 		sr = player.GetComponent<SpriteRenderer>();	// 에러가 났던 이유는 이 스크립트가 플레이어에 붙어있는게 아니라
@@ -75,15 +70,10 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 			}
 			else if (touchPosition.x > 0)
 			{
-<<<<<<< Updated upstream
 				sr.flipX = true;
 				//오른쪽 이미지 = flip on
 				
-=======
-				//오른쪽 이미지 = flip on
-				
 
->>>>>>> Stashed changes
 			}
 
 			//만약 중심(0)보다 크다면 오른쪽을 바라본다.

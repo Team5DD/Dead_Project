@@ -16,7 +16,7 @@ public class Bombmanager : MonoBehaviour
 
     void Update()
     {
-      
+
         if (ClickBntSB == true)
         {
             timer += Time.deltaTime;
@@ -41,11 +41,14 @@ public class Bombmanager : MonoBehaviour
 
     }
 
+
+
     public void OnButtonDownNomal()
     {
         GameObject bomb = Instantiate(nBombFactory, firePositon);
         buttonIT.interactable = false;
         ClickBntNB = true;
+
 
     }
 

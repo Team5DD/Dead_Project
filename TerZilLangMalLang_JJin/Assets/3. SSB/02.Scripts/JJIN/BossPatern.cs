@@ -63,14 +63,7 @@ public class BossPatern : MonoBehaviour
         spriterenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
     }
-<<<<<<< Updated upstream
-   
-=======
-    //IEnumerator abc()
-    //{
-    //    yield
-    //}
->>>>>>> Stashed changes
+
     void Update()
     {
         // Distance = PlayerTarget.transform.position.x - transform.position.x;

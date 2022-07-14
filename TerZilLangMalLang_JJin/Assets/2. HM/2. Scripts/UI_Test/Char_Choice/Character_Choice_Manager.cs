@@ -58,8 +58,9 @@ public class Character_Choice_Manager : MonoBehaviour
         character_Info[selectCharCount].SetActive(true);
         characterChoice = new Dictionary<int, Character>();
 
-        string name;
+        #region Dictionary에 캐릭터 추가
 
+        string name;
         name = "원더 드래곤";
         characterChoice.Add(0, new Character(character_Img[0], character_Info[0], name, 1234523, "노랭이"));
         name = "엔젤 드래곤";
@@ -70,18 +71,20 @@ public class Character_Choice_Manager : MonoBehaviour
         characterChoice.Add(3, new Character(character_Img[3], character_Info[3], name, 54634, "핑크핑쿠"));
         name = "지니 드래곤";
         characterChoice.Add(4, new Character(character_Img[4], character_Info[4], name, 987654, "퍼랭이"));
+        #endregion
 
-        findobject = GameObject.Find("Player_Choice_Save(Clone)");
-        if (findobject == null)
-        {
-            GameObject saveFile = Instantiate(savePrefeb);
-            saveFile.transform.position = new Vector3(0, 0, 0);
-        }
+        //findobject = GameObject.Find("Player_Choice_Save(Clone)");
+        //if (findobject == null)
+        //{
+        //    GameObject saveFile = Instantiate(savePrefeb);
+        //    saveFile.transform.position = new Vector3(0, 0, 0);
+        //}
     }
 
     private void Update()
     {
         crown_NUM.text = $"{crownCount}";
+
         #region 스테이지 클리어시 이미지 변경
         if (Save_PlayerChoice.instance.isClear_1 == true)
         {
@@ -92,12 +95,10 @@ public class Character_Choice_Manager : MonoBehaviour
 
             if (selectCharCount > 1)
             {
-                print("거부");
                 gameStart.interactable = false;
             }
             else
             {
-                print("승인");
                 gameStart.interactable = true;
             }
         }
@@ -158,6 +159,7 @@ public class Character_Choice_Manager : MonoBehaviour
         #endregion
     }
 
+    //왼쪽 버튼 클릭
     public void LeftBtn_Clik()
     {
         selectCharCount--;
@@ -178,8 +180,9 @@ public class Character_Choice_Manager : MonoBehaviour
         charf1.char_Img.SetActive(true);
         charf1.char_Info.SetActive(true);
 
-    }
+    }   
 
+    //오른쪽 버튼 클릭
     public void RightBtn_Clik()
     {
         selectCharCount++;
@@ -199,6 +202,7 @@ public class Character_Choice_Manager : MonoBehaviour
         charf1.char_Info.SetActive(true);
     }
 
+    //게임스타트 버튼 클릭
     public void GameStart_Clik()
     {
         if (characterChoice.ContainsKey(selectCharCount))
@@ -216,6 +220,7 @@ public class Character_Choice_Manager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    //디버그 버튼 클릭
     public void Debug_StageClear()
     {
         debug_StageClear++;

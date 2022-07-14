@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     [SerializeField]
     private VirtualJoystick virtualJoystick;
     private float moveSpeed = 5;
@@ -47,6 +54,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    //플레이어가 Bomb버튼을 누르면
+    //그리고 만약 그 플레이어가 노랑이라면 => 태그 사용
+    //이펙트가 생성된다
+    //생성된 이펙트는 움직인다 => 애니메이션
+    Animator anim;
+    public GameObject[] effectFactoy;
+
+    public void AttackEffect_yellow()
+    {
+        Debug.Log("노랑이공격");
+        if (gameObject.CompareTag("Yellow") == true)
+        {
+            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+            //GameObject[] effect = Instantiate(effectFactoy)[0];
+            //effect.transform.position = effectFactoy.transform.position;
+
+        }
+
+    }
+
+
     public void OnButtonDown()
     {
         rigid2d.velocity = new Vector2(rigid2d.velocity.y, jumpPower);
@@ -60,5 +89,12 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+
 }
 
