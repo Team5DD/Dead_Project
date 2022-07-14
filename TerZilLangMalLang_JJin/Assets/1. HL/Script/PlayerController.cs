@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid2d;
 
     public GameObject[] Enemy;
+    [SerializeField] float JumpCount=2;
+    private bool IsJump;
 
     public void Start()
     {
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
             Enemy[i] = GameObject.FindWithTag("Enemy");
 
         }
+        JumpCount = 2;
     }
 
     private void Update()
@@ -78,8 +81,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnButtonDown()
     {
-        rigid2d.velocity = new Vector2(rigid2d.velocity.y, jumpPower);
+        IsJump =true;
+        if (IsJump == true)
+        {
+            if (JumpCount > 0.0f)
+            {
+                JumpCount--;
+                rigid2d.velocity = new Vector2(rigid2d.velocity.y, jumpPower);
+            }
+        }
     }
+
     //Ãß°¡
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -88,13 +100,24 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Á×À½");
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("PrevCol"))
+        {
+
+            Destroy(collision.gameObject);
+            MapManager.instance.OnColBox();
+        }
+        if (collision.gameObject.CompareTag("AfterCol"))
+        {
+
+            Destroy(collision.gameObject);
+            MapManager.instance.OffColBox();
+
+        }
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            JumpCount = 2;
+        }
+
     }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
-
 }
 
