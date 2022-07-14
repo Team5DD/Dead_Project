@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 
 
-public class BossPatern : MonoBehaviour
+public class BossPatern2 : MonoBehaviour
 {
-    public static BossPatern instance;
+    public static BossPatern2 instance;
     private void Awake()
     {
         instance = this;
@@ -19,11 +19,17 @@ public class BossPatern : MonoBehaviour
     public enum State
     {
         Idle,
+
         Pattern,
+
         Move,
         TakeDamage,
+
         Die,
+
         Chase,
+
+
     }
 
     public GameObject PlayerTarget;
@@ -74,6 +80,7 @@ public class BossPatern : MonoBehaviour
         FaceTarget();
         if (BossHP.instance.HP <= 0)
         {
+            
             state = State.Die;
         }
 
@@ -82,6 +89,7 @@ public class BossPatern : MonoBehaviour
             case State.Idle:
                 Idle();
                 break;
+
             case State.Move:
                 Move();
                 break;
@@ -130,17 +138,26 @@ public class BossPatern : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
+       // anim.SetTrigger("Move");
     }
     private void Idle()
     {
         anim.SetTrigger("Idle");
         EfxAnim.SetTrigger("IdleEfx");
+
         print("Idle");
         Distance = PlayerTarget.transform.position.x - transform.position.x;
         if (Mathf.Abs(Distance) <= Mathf.Abs(FindDistance))
         {
             MoveToTarget();
+            
             state = State.Move;
+/*
+            if (Mathf.Abs(Distance) <= Mathf.Abs(AttackDistance))
+            {
+                state = State.Pattern;
+            }
+*/
         }
     }
     private void Move()
@@ -168,6 +185,7 @@ public class BossPatern : MonoBehaviour
         }
     }
     ///죽음
+
     IEnumerator IEDie()
     {
             StartCoroutine(Blink(3));
@@ -182,6 +200,19 @@ public class BossPatern : MonoBehaviour
             StopAllCoroutines();
 
     }
+        //UIManager.instance.SuccessUI.SetActive(true);
+        //StartCoroutine("OffSiccessUI");
+
+        //UIManager.instance.SuccessUI.SetActive(false);
+        //yield return new WaitForSeconds(1f);
+        //Debug.Log("bbb");
+
+        //UIManager.instance.GetCrowUI.SetActive(true);
+        //yield return new WaitForSeconds(1f);
+        //Debug.Log("ccc");
+        //UIManager.instance.GetCrowUI.SetActive(false);
+        //Destroy(this.gameObject);
+    
     public void TakeDamage()
     {
         //색깔 바꾸기
@@ -194,14 +225,33 @@ public class BossPatern : MonoBehaviour
         anim.SetTrigger("Idle");
         state = State.Chase;
     }
+
+//public void FireShot()
+//{
+
+//    //Destroy(Fire);
+
+//    GameObject Fire = Instantiate(FireFactory);
+//    Fire.transform.position = FirePosiotion.transform.position;
+//    Fire.GetComponent<Rigidbody2D>().velocity = new Vector2(nextMove, 0);
+
+
+//    state = State.Idle;
+
+//}
+
+
 private void BossAI()
 {
         anim.SetTrigger("Idle");
         //보스 상태가 공격 상태일때만 실행된다.
         print("BossAI");
         int randAction = UnityEngine.Random.Range(0, 4);
+
+
         switch (randAction)
         {
+
             case 0:
                      //공격 0 패턴 - Blink 후  Player 위로 순간이동 후 떨어지기
                      BossTelePort();
@@ -222,6 +272,32 @@ private void BossAI()
                      break;
         }
 }
+
+    private void BossFireRain()
+    {
+        StartCoroutine("FireRain");
+        //점프 했다가 내려오면 불 내려오기
+        p = false;
+        state = State.Chase;
+    }
+    IEnumerator FireRain()
+    {
+        anim.SetTrigger("Jump");
+        EfxAnim.SetTrigger("ExposionEfx");
+        rb.AddForce(new Vector3(0, 0.001f, 0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.4f);
+        rb.AddForce(new Vector3(0, -0.002f, 0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.4f);
+
+        StartCoroutine(Blink(3));
+        yield return new WaitForSeconds(0.5f);
+        GameObject[] Fire = new GameObject[fireRainfirenum];
+        for (int i = 0; i < fireRainfirenum; i++)
+        {
+            Fire[i] = Instantiate(FireFactory);
+            Fire[i].transform.position = PlayerTarget.transform.position + new Vector3(-(fireRainfirenum % 2) + i,5f ,0);
+        }
+    }
     private void BossTelePort()
     {
         StartCoroutine("BossTel");
@@ -231,8 +307,11 @@ private void BossAI()
     IEnumerator BossTel()
     {
         StartCoroutine(Blink(2));
+        
+        
         yield return new WaitForSeconds(0.5f);
         this.transform.position = PlayerTarget.transform.position + new Vector3(0, 3, 0);
+        
         rb.bodyType = RigidbodyType2D.Kinematic;
 
         StartCoroutine(Blink(2));
@@ -252,30 +331,8 @@ private void BossAI()
             yield return new WaitForSeconds(0.1f);
         }
     }
-
-    //몸통 박치기
-    private void BossStrike()
-    {
-        FaceTarget();
-        anim.SetTrigger("Strike");
-        EfxAnim.SetTrigger("StrikeEfx");
-        StartCoroutine("Dash");
-
-        p = false;
-        state = State.Chase;
-    }
-
-    IEnumerator Dash()
-    {
-        for (int i = 0; i < 100; i++)
-        {
-            this.transform.position = Vector3.Lerp(this.transform.position, PlayerTarget.transform.position, 0.01f);
-            yield return 0;
-        }
-    }
     //보스 패턴 형식
     //불꽃 뿜기
-
     private void BossAttack()
     {
     FaceTarget();
@@ -289,35 +346,31 @@ private void BossAI()
         }
         p = false;
         state = State.Chase;
+        
+
     }
 
-
-private void BossFireRain()
+//몸통 박치기
+private void BossStrike()
 {
-    StartCoroutine("FireRain");
-    //점프 했다가 내려오면 불 내려오기
+    FaceTarget();
+    anim.SetTrigger("Strike");
+    EfxAnim.SetTrigger("StrikeEfx");
+    StartCoroutine("Dash");
+
     p = false;
     state = State.Chase;
 }
-IEnumerator FireRain()
-{
-    anim.SetTrigger("Jump");
-    EfxAnim.SetTrigger("ExposionEfx");
-    rb.AddForce(new Vector3(0, 0.001f, 0), ForceMode2D.Impulse);
-    yield return new WaitForSeconds(0.4f);
-    rb.AddForce(new Vector3(0, -0.002f, 0), ForceMode2D.Impulse);
-    yield return new WaitForSeconds(0.4f);
 
-    StartCoroutine(Blink(3));
-    yield return new WaitForSeconds(0.5f);
-    GameObject[] Fire = new GameObject[fireRainfirenum];
-    for (int i = 0; i < fireRainfirenum; i++)
+IEnumerator Dash()
+{
+    for (int i = 0; i < 100; i++)
     {
-        Fire[i] = Instantiate(FireFactory);
-        Fire[i].transform.position = PlayerTarget.transform.position + new Vector3(-(fireRainfirenum % 2) + i, 5f, 0);
+        this.transform.position = Vector3.Lerp(this.transform.position, PlayerTarget.transform.position, 0.01f);
+            yield return 0;
     }
 }
-    private void OnCollisionEnter2D(Collision2D collision)
+private void OnCollisionEnter2D(Collision2D collision)
 {
     if (collision.gameObject.CompareTag("Bomb"))
     {

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4262610505764721605}
   - component: {fileID: -2038945358463093040}
   m_Layer: 8
-  m_Name: Fire
+  m_Name: Fire(PlayerHoming)
   m_TagString: Fire
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
