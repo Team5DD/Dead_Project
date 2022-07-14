@@ -9,15 +9,15 @@ public class Fire : MonoBehaviour
         instance = this;
 
         rigid = GetComponent<Rigidbody2D>();
-        StartCoroutine(GainPowerTimer());
-        StartCoroutine(GainPower());
+       // StartCoroutine(GainPowerTimer());
+       //StartCoroutine(GainPower());
     }
 
     Rigidbody2D rigid;
     float angularPower = 2;
     float scaleValue = 0.1f;
     bool isShot;
-
+    float fireyRange;
     public float myTime = 5f;
     float curTime;
     public GameObject PlayerTarget;
@@ -25,7 +25,11 @@ public class Fire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fireyRange = Random.Range(-0.3f, 0.3f);
         PlayerTarget = GameObject.Find("Player");
+        this.transform.localScale = new Vector3(1, 1, 1);
+        this.transform.right = (PlayerTarget.transform.position - this.transform.position).normalized;
+        
     }
 
     // Update is called once per frame
@@ -36,9 +40,10 @@ public class Fire : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        this.transform.localPosition += (this.transform.right+new Vector3(0, fireyRange, 0)) * 0.03f;
+       // rigid.AddForce(Vector2.right * 0.01f, ForceMode2D.Impulse);
     }
-
+/*
     void FaceTarget()
     {
         if (PlayerTarget.transform.position.x - transform.position.x < 0) // Å¸°ÙÀÌ ¿ÞÂÊ¿¡ ÀÖÀ» ¶§
@@ -50,15 +55,16 @@ public class Fire : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
-
-
+*/
+/*
     IEnumerator GainPowerTimer()
     {
         yield return new WaitForSeconds(2.2f);
         isShot = true;
 
     }
-
+*/
+/*
     IEnumerator GainPower()
     {
         FaceTarget();
@@ -73,11 +79,12 @@ public class Fire : MonoBehaviour
             rigid.AddForce(Vector2.right * 0.5f, ForceMode2D.Impulse);
 
             yield return new WaitForSeconds(1f);
-            Destroy(this.gameObject);
+           // Destroy(this.gameObject);
 
         }
-    }
 
+    }
+*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
