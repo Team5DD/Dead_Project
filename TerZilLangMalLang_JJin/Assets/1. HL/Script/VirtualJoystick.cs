@@ -24,6 +24,7 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
 
 		player = GameObject.Find("Player");			//			[ 이현민 ] 
+		//player = GameObject.;         //			[ 이현민 ] 
 		sr = player.GetComponent<SpriteRenderer>();	// 에러가 났던 이유는 이 스크립트가 플레이어에 붙어있는게 아니라
 		//sr = GetComponent<SpriteRenderer>();		// 스크립트를 통해서 불러오는거라 그랬던 거였어 
 	}												// 그래서 Player 게임 오브젝트를 가져오고 그 스프라이트렌더러 컴포넌트를 가져왔어

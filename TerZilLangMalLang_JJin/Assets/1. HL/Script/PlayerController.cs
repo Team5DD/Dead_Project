@@ -16,8 +16,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid2d;
 
     public GameObject[] Enemy;
+<<<<<<< Updated upstream
     [SerializeField] float JumpCount=2;
     private bool IsJump;
+=======
+    public GameObject playerHP;
+
+>>>>>>> Stashed changes
 
     public void Start()
     {
@@ -62,13 +67,65 @@ public class PlayerController : MonoBehaviour
     //그리고 만약 그 플레이어가 노랑이라면 => 태그 사용
     //이펙트가 생성된다
     //생성된 이펙트는 움직인다 => 애니메이션
-    Animator anim;
     public GameObject[] effectFactoy;
 
     public void AttackEffect_yellow()
     {
         Debug.Log("노랑이공격");
         if (gameObject.CompareTag("Yellow") == true)
+        {
+            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+            //GameObject[] effect = Instantiate(effectFactoy)[0];
+            //effect.transform.position = effectFactoy.transform.position;
+
+        }
+
+    }
+
+
+    public void AttackEffect_half()
+    {
+        Debug.Log("반쪽공격");
+        if (gameObject.CompareTag("Half") == true)
+        {
+            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+            //GameObject[] effect = Instantiate(effectFactoy)[0];
+            //effect.transform.position = effectFactoy.transform.position;
+
+        }
+
+    }
+
+    public void AttackEffect_Blue()
+    {
+        Debug.Log("파랑이공격");
+        if (gameObject.CompareTag("Blue") == true)
+        {
+            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+            //GameObject[] effect = Instantiate(effectFactoy)[0];
+            //effect.transform.position = effectFactoy.transform.position;
+
+        }
+
+    }
+
+    public void AttackEffect_Blackjoy()
+    {
+        Debug.Log("검정조이공격");
+        if (gameObject.CompareTag("Blackjoy") == true)
+        {
+            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+            //GameObject[] effect = Instantiate(effectFactoy)[0];
+            //effect.transform.position = effectFactoy.transform.position;
+
+        }
+
+    }
+
+    public void AttackEffect_Pink()
+    {
+        Debug.Log("핑크공격");
+        if (gameObject.CompareTag("Pink") == true)
         {
             //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
             //GameObject[] effect = Instantiate(effectFactoy)[0];

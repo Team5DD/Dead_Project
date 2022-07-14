@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class Bombmanager : MonoBehaviour
 {
-    public Transform firePositon;
-    public GameObject nBombFactory;
-    public GameObject sBombFactory;
+     Transform firePositon;
+    public GameObject[] nBombFactory;
+    public GameObject[] sBombFactory;
     public Button buttonIT;
-    public float timer;
+    float timer;
     bool ClickBntSB = false;
     bool ClickBntNB = false;
 
+    GameObject PlayerTag;
+    
+
+    private void Start()
+    {
+        PlayerTag = GameObject.Find("Player");
+        firePositon = PlayerTag.transform.GetChild(0);
+    }
 
     void Update()
     {
@@ -31,7 +39,7 @@ public class Bombmanager : MonoBehaviour
         if (ClickBntNB == true)
         {
             timer += Time.deltaTime;
-            if (timer >= 0.5f)
+            if (timer >= 1f)
             {
                 buttonIT.interactable = true;
                 timer = 0;
@@ -45,16 +53,48 @@ public class Bombmanager : MonoBehaviour
 
     public void OnButtonDownNomal()
     {
-        GameObject bomb = Instantiate(nBombFactory, firePositon);
-        buttonIT.interactable = false;
-        ClickBntNB = true;
 
+        if (PlayerTag.gameObject.CompareTag("Yellow") == true)
+        {
+            GameObject bomb = Instantiate(nBombFactory[0], firePositon);
+            buttonIT.interactable = false;
+            ClickBntNB = true;
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Half") == true)
+        {
+            GameObject bomb = Instantiate(nBombFactory[1], firePositon);
+            buttonIT.interactable = false;
+            ClickBntNB = true;
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Blackjoy") == true)
+        {
+            GameObject bomb = Instantiate(nBombFactory[2], firePositon);
+            buttonIT.interactable = false;
+            ClickBntNB = true;
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Blue") == true)
+        {
+            GameObject bomb = Instantiate(nBombFactory[3], firePositon);
+            buttonIT.interactable = false;
+            ClickBntNB = true;
+
+        }
+        if (PlayerTag.gameObject.CompareTag("Pink") == true)
+        {
+            GameObject bomb = Instantiate(nBombFactory[4], firePositon);
+            buttonIT.interactable = false;
+            ClickBntNB = true;
+
+        }
 
     }
 
     public void OnButtonDownSpecial()
     {
-        GameObject SPbomb = Instantiate(sBombFactory, firePositon);
+        GameObject SPbomb = Instantiate(nBombFactory[0], firePositon);
         buttonIT.interactable = false;
         ClickBntSB = true;
         //만약 눌렸다면, 비활성화한다. 4초동안
