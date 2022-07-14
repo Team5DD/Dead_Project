@@ -4,31 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HM_Typing_Word : MonoBehaviour
+public class HM_Typing_Word3 : MonoBehaviour
 {
     public TextMeshProUGUI txt_1;
 
-    public GameObject txt1;
-    public GameObject txt2;
+    public GameObject txt3;
 
-     string message;
-     string temp_message;
+    string message;
+    string temp_message;
     public float speed = 0.2f;
 
-    //public GameObject anyKey;
+    public GameObject anyKey;
 
     // Start is called before the first frame update
     void Start()
     {
         txt_1.text = "";
-        message = "평화로운 장난감 세상에서 개성 넘치는 메타 토이 드래곤들이 살아가고 있었다.\n그들은 각자의 능력을 이용해, 왕관의 주인이 되어 장난감 세상의 왕좌에 오르기 위해 노력하고 있었다.";
+        message = "생기를 잃은 세상과 붙잡혀버린 친구들..\n장난감 세상을 사랑하는 원더 드래곤은 버드맨에게 붙잡힌 메타 토이 드래곤들을\n구출해내기로 결심해 모험을 떠난다.";
 
         StartCoroutine(TypingAction());
     }
 
     IEnumerator TypingAction()
     {
-        for(int i =0; i<message.Length; i++)
+        for (int i = 0; i < message.Length; i++)
         {
             yield return new WaitForSeconds(0.05f);
 
@@ -39,17 +38,14 @@ public class HM_Typing_Word : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        txt1.SetActive(false);
-        txt2.SetActive(true);
-
-        //anyKey.SetActive(true);
+        anyKey.SetActive(true);
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

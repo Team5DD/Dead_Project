@@ -11,7 +11,7 @@ public class HM_Title_Manager : MonoBehaviour
     public GameObject title_UI;
     public GameObject char_Choice_UI;
     public GameObject characters;
-    
+    public GameObject backGround;
     public GameObject typing_UI;
 
     public Image image;
@@ -47,6 +47,7 @@ public class HM_Title_Manager : MonoBehaviour
                 char_Choice_UI.SetActive(true);
                 characters.SetActive(true);
                 title_UI.SetActive(false);
+                backGround.SetActive(true);
             }
         }
     }
