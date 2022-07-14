@@ -16,13 +16,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid2d;
 
     public GameObject[] Enemy;
-<<<<<<< Updated upstream
     [SerializeField] float JumpCount=2;
     private bool IsJump;
-=======
+
     public GameObject playerHP;
 
->>>>>>> Stashed changes
 
     public void Start()
     {
