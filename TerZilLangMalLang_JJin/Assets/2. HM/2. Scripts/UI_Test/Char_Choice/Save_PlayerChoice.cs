@@ -13,11 +13,16 @@ public class Save_PlayerChoice : MonoBehaviour
     public int save_nft_Number;
     public int save_StageClear;
 
+    public string TicketRandNum;
+
     // 스테이지 클리어 후 캐릭터 해금했을 때
     public bool isClear_1 = false;
     public bool isClear_2 = false;
     public bool isClear_3 = false;
     public bool isClear_4 = false;
+    public bool isClear_5 = false;
+
+    public bool isTitleSkip = false;
 
 
     

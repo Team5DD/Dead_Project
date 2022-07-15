@@ -50,6 +50,15 @@ public class HM_Typing_Word2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
 
+            if (touch.phase == TouchPhase.Began)
+            {
+                txt2.SetActive(false);
+                txt3.SetActive(true);
+            }
+        }
     }
 }

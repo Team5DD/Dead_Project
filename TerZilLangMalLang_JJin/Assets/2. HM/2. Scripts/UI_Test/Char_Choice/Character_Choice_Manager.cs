@@ -49,7 +49,10 @@ public class Character_Choice_Manager : MonoBehaviour
     public Sprite[] drangons;
     public Sprite[] crowns;
 
+    public GameObject ticket_FullSize;
+    public TextMeshProUGUI ticket_Num;
     public int debug_StageClear = 0;
+    string ticket_RandNum;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +82,8 @@ public class Character_Choice_Manager : MonoBehaviour
         //    GameObject saveFile = Instantiate(savePrefeb);
         //    saveFile.transform.position = new Vector3(0, 0, 0);
         //}
+
+        //MakeTicketRanNum();
     }
 
     private void Update()
@@ -143,8 +148,16 @@ public class Character_Choice_Manager : MonoBehaviour
             dragon5_image.sprite = drangons[4];
             crown_Image[3].sprite = crowns[3];
             Save_PlayerChoice.instance.save_StageClear = 4;
+           
+        }
+        if(Save_PlayerChoice.instance.isClear_5 == true)
+        {
+
+            ticket_Num.text = Save_PlayerChoice.instance.TicketRandNum;
+
             dark_Ticket.SetActive(false);
         }
+
         if (Save_PlayerChoice.instance.isClear_1 == false)
         {
             if (selectCharCount > 0)
@@ -220,6 +233,11 @@ public class Character_Choice_Manager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void TicketClik()
+    {
+        ticket_FullSize.SetActive(true);
+    }
+
     //디버그 버튼 클릭
     public void Debug_StageClear()
     {
@@ -229,6 +247,7 @@ public class Character_Choice_Manager : MonoBehaviour
         else if (debug_StageClear == 2) Save_PlayerChoice.instance.isClear_2 = true;
         else if (debug_StageClear == 3) Save_PlayerChoice.instance.isClear_3 = true;
         else if (debug_StageClear == 4) Save_PlayerChoice.instance.isClear_4 = true;
+        else if (debug_StageClear == 5) Save_PlayerChoice.instance.isClear_5 = true;
 
     }
 }

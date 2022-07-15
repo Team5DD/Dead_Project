@@ -20,6 +20,8 @@ public class HM_Title_Manager : MonoBehaviour
     
     bool titleOff = false;
 
+    string ticket_RandNum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,9 @@ public class HM_Title_Manager : MonoBehaviour
             GameObject saveFile = Instantiate(savePrefeb);
             saveFile.transform.position = new Vector3(0, 0, 0);
         }
+
+        MakeTicketRanNum();
+        Save_PlayerChoice.instance.TicketRandNum = ticket_RandNum;
     }
 
     // Update is called once per frame
@@ -52,6 +57,18 @@ public class HM_Title_Manager : MonoBehaviour
         }
     }
 
+    void MakeTicketRanNum()
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            int[] a = new int[16];
+            a[i] = Random.Range(0, 10);
+
+            ticket_RandNum += $"{a[i]}";
+        }
+
+    }
+
     public void GameStart_Btn()
     {
         StartCoroutine(FadeOutIn());
@@ -71,16 +88,28 @@ public class HM_Title_Manager : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-         fadeCount = 1;
-        while (fadeCount > 0.0f)
+         
+
+        if(Save_PlayerChoice.instance.isTitleSkip == false)
         {
-            fadeCount -= 0.02f;
-            yield return new WaitForSeconds(0.01f);
-            image.color = new Color(0, 0, 0, fadeCount);
+            backGround.SetActive(false);
+            char_Choice_UI.SetActive(false);
+            typing_UI.SetActive(true);
+            Save_PlayerChoice.instance.isTitleSkip = true;
+
+            fadeCount = 1;
+            while (fadeCount > 0.0f)
+            {
+                fadeCount -= 0.02f;
+                yield return new WaitForSeconds(0.01f);
+                image.color = new Color(0, 0, 0, fadeCount);
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
         }
 
-        typing_UI.SetActive(true);
         
-        char_Choice_UI.SetActive(false);
     }
 }
