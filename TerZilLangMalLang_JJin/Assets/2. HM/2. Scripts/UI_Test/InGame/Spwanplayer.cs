@@ -7,7 +7,7 @@ public class Spwanplayer : MonoBehaviour
     public GameObject tplayer;
     SpriteRenderer spriteRender;
     GameObject playerchar;
-    Save_PlayerChoice savePlayer;
+    AutoSave savePlayer;
 
     Sprite playerspwan;
     GameObject spwanpoint;
@@ -19,8 +19,8 @@ public class Spwanplayer : MonoBehaviour
 
 
         playerchar = GameObject.Find("Player_Choice_Save(Clone)");
-        savePlayer = playerchar.GetComponent<Save_PlayerChoice>();
-        playerspwan = Save_PlayerChoice.instance.char_Prefeb_Choice;
+        savePlayer = playerchar.GetComponent<AutoSave>();
+        playerspwan = AutoSave.instance.char_Prefeb_Choice;
 
         spriteRender.sprite = playerspwan;
 

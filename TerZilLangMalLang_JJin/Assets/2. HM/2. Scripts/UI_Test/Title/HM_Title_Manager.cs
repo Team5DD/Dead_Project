@@ -34,7 +34,7 @@ public class HM_Title_Manager : MonoBehaviour
         }
 
         MakeTicketRanNum();
-        Save_PlayerChoice.instance.TicketRandNum = ticket_RandNum;
+        AutoSave.instance.TicketRandNum = ticket_RandNum;
     }
 
     // Update is called once per frame
@@ -90,12 +90,12 @@ public class HM_Title_Manager : MonoBehaviour
 
          
 
-        if(Save_PlayerChoice.instance.isTitleSkip == false)
+        if(AutoSave.instance.isTitleSkip == false)
         {
             backGround.SetActive(false);
             char_Choice_UI.SetActive(false);
             typing_UI.SetActive(true);
-            Save_PlayerChoice.instance.isTitleSkip = true;
+            AutoSave.instance.isTitleSkip = true;
 
             fadeCount = 1;
             while (fadeCount > 0.0f)

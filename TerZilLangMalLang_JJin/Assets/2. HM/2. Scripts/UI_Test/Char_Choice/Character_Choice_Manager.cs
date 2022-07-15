@@ -91,12 +91,12 @@ public class Character_Choice_Manager : MonoBehaviour
         crown_NUM.text = $"{crownCount}";
 
         #region 스테이지 클리어시 이미지 변경
-        if (Save_PlayerChoice.instance.isClear_1 == true)
+        if (AutoSave.instance.gameData.isClear_1 == true)
         {
             crownCount = 1;
             dragon2_image.sprite = drangons[1];
             crown_Image[0].sprite = crowns[0];
-            Save_PlayerChoice.instance.save_StageClear = 1;
+            AutoSave.instance.save_StageClear = 1;
 
             if (selectCharCount > 1)
             {
@@ -108,12 +108,12 @@ public class Character_Choice_Manager : MonoBehaviour
             }
         }
 
-        if (Save_PlayerChoice.instance.isClear_2 == true)
+        if (AutoSave.instance.gameData.isClear_2 == true)
         {
             crownCount = 2;
             dragon3_image.sprite = drangons[2];
             crown_Image[1].sprite = crowns[1];
-            Save_PlayerChoice.instance.save_StageClear = 2;
+            AutoSave.instance.save_StageClear = 2;
 
             if (selectCharCount > 2)
             {
@@ -125,12 +125,12 @@ public class Character_Choice_Manager : MonoBehaviour
             }
         }
 
-        if (Save_PlayerChoice.instance.isClear_3 == true)
+        if (AutoSave.instance.gameData.isClear_3 == true)
         {
             crownCount = 3;
             dragon4_image.sprite = drangons[3];
             crown_Image[2].sprite = crowns[2];
-            Save_PlayerChoice.instance.save_StageClear = 3;
+            AutoSave.instance.save_StageClear = 3;
 
             if (selectCharCount > 3)
             {
@@ -142,23 +142,33 @@ public class Character_Choice_Manager : MonoBehaviour
             }
         }
 
-        if (Save_PlayerChoice.instance.isClear_4 == true)
+        if (AutoSave.instance.gameData.isClear_4 == true)
         {
             crownCount = 4;
             dragon5_image.sprite = drangons[4];
             crown_Image[3].sprite = crowns[3];
-            Save_PlayerChoice.instance.save_StageClear = 4;
-           
+            AutoSave.instance.save_StageClear = 4;
+
+            if (selectCharCount > 4)
+            {
+                gameStart.interactable = false;
+            }
+            else
+            {
+                gameStart.interactable = true;
+            }
+
         }
-        if(Save_PlayerChoice.instance.isClear_5 == true)
+        if(AutoSave.instance.gameData.isClear_5 == true)
         {
 
-            ticket_Num.text = Save_PlayerChoice.instance.TicketRandNum;
-
+            ticket_Num.text = AutoSave.instance.TicketRandNum;
+            AutoSave.instance.save_StageClear = 5;
             dark_Ticket.SetActive(false);
+            gameStart.interactable = true;
         }
 
-        if (Save_PlayerChoice.instance.isClear_1 == false)
+        if (AutoSave.instance.gameData.isClear_1 == false)
         {
             if (selectCharCount > 0)
             {
@@ -223,12 +233,12 @@ public class Character_Choice_Manager : MonoBehaviour
             Character choiceNow = characterChoice[selectCharCount];
 
             // 플레이어가 선택한 캐릭터를 저장하기
-            Save_PlayerChoice.instance.save_char_Img = choiceNow.char_Img;
-            Save_PlayerChoice.instance.save_char_Name = choiceNow.name;
-            Save_PlayerChoice.instance.save_nft_Number = choiceNow.nft_Number;
+            AutoSave.instance.save_char_Img = choiceNow.char_Img;
+            AutoSave.instance.save_char_Name = choiceNow.name;
+            AutoSave.instance.save_nft_Number = choiceNow.nft_Number;
 
             gameStart.interactable = true;
-            Save_PlayerChoice.instance.char_Prefeb_Choice = Save_PlayerChoice.instance.char_Prefeb[selectCharCount];
+            AutoSave.instance.char_Prefeb_Choice = AutoSave.instance.char_Prefeb[selectCharCount];
         }
         SceneManager.LoadScene(2);
     }
@@ -243,11 +253,11 @@ public class Character_Choice_Manager : MonoBehaviour
     {
         debug_StageClear++;
 
-        if (debug_StageClear == 1) Save_PlayerChoice.instance.isClear_1 = true;
-        else if (debug_StageClear == 2) Save_PlayerChoice.instance.isClear_2 = true;
-        else if (debug_StageClear == 3) Save_PlayerChoice.instance.isClear_3 = true;
-        else if (debug_StageClear == 4) Save_PlayerChoice.instance.isClear_4 = true;
-        else if (debug_StageClear == 5) Save_PlayerChoice.instance.isClear_5 = true;
+        if (debug_StageClear == 1) AutoSave.instance.gameData.isClear_1 = true;
+        else if (debug_StageClear == 2) AutoSave.instance.gameData.isClear_2 = true;
+        else if (debug_StageClear == 3) AutoSave.instance.gameData.isClear_3 = true;
+        else if (debug_StageClear == 4) AutoSave.instance.gameData.isClear_4 = true;
+        else if (debug_StageClear == 5) AutoSave.instance.gameData.isClear_5 = true;
 
     }
 }

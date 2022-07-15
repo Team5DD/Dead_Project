@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4560829267252804096}
   - component: {fileID: 4560829267252804103}
+  - component: {fileID: 5536363021484001574}
   m_Layer: 0
   m_Name: Player_Choice_Save
   m_TagString: Untagged
@@ -38,7 +39,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4560829267252804097}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf284c2b99c362248b53e7a61ae333e4, type: 3}
   m_Name: 
@@ -54,7 +55,34 @@ MonoBehaviour:
   save_char_Name: 
   save_nft_Number: 0
   save_StageClear: 0
+  TicketRandNum: 
   isClear_1: 0
   isClear_2: 0
   isClear_3: 0
   isClear_4: 0
+  isClear_5: 0
+  isTitleSkip: 0
+--- !u!114 &5536363021484001574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4560829267252804097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02361814aa4949549847a082e4ac3eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  char_Prefeb:
+  - {fileID: 21300000, guid: a89dd0953671fe340bf8794b82c43692, type: 3}
+  - {fileID: 21300000, guid: 76b253e45ef0a8447b1c601353c1e4ef, type: 3}
+  - {fileID: 21300000, guid: a83618e9828821245b0a4a5051bed7ab, type: 3}
+  - {fileID: 21300000, guid: d0595182b31054b44a4eda67359b28e7, type: 3}
+  - {fileID: 21300000, guid: a3a2f541e64b2e146bfec576601c00ba, type: 3}
+  char_Prefeb_Choice: {fileID: 0}
+  save_char_Img: {fileID: 0}
+  save_char_Name: 
+  save_nft_Number: 0
+  save_StageClear: 0
+  GameDataFileName: DragonsData.json

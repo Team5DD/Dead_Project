@@ -35,7 +35,8 @@ public class AutoSave : MonoBehaviour
     public string save_char_Name;
     public int save_nft_Number;
     public int save_StageClear;
-
+    public bool isTitleSkip = false;
+    public string TicketRandNum;
 
     public class GameData
     {
@@ -43,7 +44,7 @@ public class AutoSave : MonoBehaviour
         public bool isClear_2 = false;
         public bool isClear_3 = false;
         public bool isClear_4 = false;
-
+        public bool isClear_5 = false;
     }
 
     // --- 게임 데이터 파일이름 설정 ---
