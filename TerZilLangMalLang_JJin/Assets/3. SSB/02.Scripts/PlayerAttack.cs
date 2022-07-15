@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Game bullet;
+    public GameObject bullet;
     public Transform pos;
     // Start is called before the first frame update
     void Start()
