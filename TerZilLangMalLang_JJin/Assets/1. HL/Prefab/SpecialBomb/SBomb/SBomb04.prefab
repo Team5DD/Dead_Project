@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7161330577157261630}
   m_Layer: 0
   m_Name: SBomb04
-  m_TagString: Untagged
+  m_TagString: SBomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
