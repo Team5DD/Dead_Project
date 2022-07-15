@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 
 
-public class BossPatern : MonoBehaviour
+public class Boss5Patern : MonoBehaviour
 {
-    public static BossPatern instance;
+    public static Boss5Patern instance;
     private void Awake()
     {
         instance = this;
@@ -13,14 +13,14 @@ public class BossPatern : MonoBehaviour
     Animator anim;
     public Animator EfxAnim;    //자식이 애니메이터
     public int getDamage = 10;
-    public int bossAttackfirenum =4;
-    public int fireRainfirenum = 5;
+    public int fireTowernum = 4;
+    public int fireRainfirenum = 3;
+    public GameObject floorboomPoint;
     public State state;
     public enum State
     {
         Idle,
         Pattern,
-        Move,
         TakeDamage,
         Die,
         Chase,
@@ -37,7 +37,7 @@ public class BossPatern : MonoBehaviour
     float curTime;
 
     [SerializeField] int nextMove;
-    public GameObject FireFactory;
+    public GameObject[] FireFactory;
     public Transform FirePosiotion;
     public float Distance;
     SpriteRenderer spriterenderer;
@@ -82,9 +82,6 @@ public class BossPatern : MonoBehaviour
             case State.Idle:
                 Idle();
                 break;
-            case State.Move:
-                Move();
-                break;
             case State.Pattern:
                 BossAI();
                 break;
@@ -111,7 +108,7 @@ public class BossPatern : MonoBehaviour
             state = State.Pattern;
         }
     }
-    void MoveToTarget()
+    /*void MoveToTarget()
     {
         if (Mathf.Abs(Distance) <= Mathf.Abs(FindDistance))
         {
@@ -119,16 +116,16 @@ public class BossPatern : MonoBehaviour
             dir = (dir < AttackDistance) ? -1 : 1;
             transform.Translate(new Vector2(dir, 0) * moveSpeed * Time.deltaTime);
         }
-    }
+    }*/
     void FaceTarget()
     {
         if (PlayerTarget.transform.position.x - transform.position.x < 0) // 타겟이 왼쪽에 있을 때
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-9, 9, 1);
         }
         else // 타겟이 오른쪽에 있을 때
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(9, 9, 1);
         }
     }
     private void Idle()
@@ -137,13 +134,12 @@ public class BossPatern : MonoBehaviour
         EfxAnim.SetTrigger("IdleEfx");
         print("Idle");
         Distance = PlayerTarget.transform.position.x - transform.position.x;
-        if (Mathf.Abs(Distance) <= Mathf.Abs(FindDistance))
+        if (Mathf.Abs(Distance) <= Mathf.Abs(AttackDistance))
         {
-            MoveToTarget();
-            state = State.Move;
+            state = State.Pattern;
         }
     }
-    private void Move()
+    /*private void Move()
     {
         anim.SetTrigger("Move");
         print("Move");
@@ -157,7 +153,8 @@ public class BossPatern : MonoBehaviour
                 state = State.Pattern;
             }
         }
-    }
+    }*/
+    //보스는 움직이지 않는다...
     bool die = false;
     private void Die()
     {
@@ -170,16 +167,16 @@ public class BossPatern : MonoBehaviour
     ///죽음
     IEnumerator IEDie()
     {
-            StartCoroutine(Blink(3));
-            anim.SetTrigger("Die");
-            yield return new WaitForSeconds(1f);
-            print("Die");
-            this.gameObject.SetActive(false);
-            GameObject capsule = Instantiate(Capsule);
-            capsule.SetActive(true);
-            capsule.transform.position = this.gameObject.transform.position;
-           // StopAllCoroutines 주의 !!!
-            StopAllCoroutines();
+        StartCoroutine(Blink(3));
+        anim.SetTrigger("Die");
+        yield return new WaitForSeconds(1f);
+        print("Die");
+        this.gameObject.SetActive(false);
+        GameObject capsule = Instantiate(Capsule);
+        capsule.SetActive(true);
+        capsule.transform.position = this.gameObject.transform.position;
+        // StopAllCoroutines 주의 !!!
+        StopAllCoroutines();
 
     }
     public void TakeDamage()
@@ -191,38 +188,39 @@ public class BossPatern : MonoBehaviour
         Debug.Log("밤 맞고 데미지 얻음");
         BossHP.instance.HP -= getDamage;
         p = false;
-        anim.SetTrigger("Idle");
         state = State.Chase;
+        anim.SetTrigger("Idle");
     }
-private void BossAI()
-{
+    private void BossAI()
+    {
         anim.SetTrigger("Idle");
         //보스 상태가 공격 상태일때만 실행된다.
         print("BossAI");
-        int randAction = UnityEngine.Random.Range(0, 4);
+        int randAction =0;
         switch (randAction)
         {
             case 0:
-                     //공격 0 패턴 - Blink 후  Player 위로 순간이동 후 떨어지기
-                     BossTelePort();
-                     break;
+                //공격 0 패턴 - 불꽃비가 내려와~~~~
+                BossFireRain();
+                break;
             case 1:
-                     //공격 1 패턴 - 불꽃 뿜기                  
-                     BossAttack();
-                     break;
+                //공격 1 패턴 - 브레스 공격                 
+                FireBreathe();
+                break;
 
             case 2:
-                     //공격 2 패턴 - 몸통 박치기
-                     BossStrike();
-                     break;
+                FireTowerCount();
+                //공격 2 패턴 - 불기둥 순차적으로
+
+                break;
 
             case 3:
-                     //공격 3 패턴 - Player 머리위에서 일정 간격으로 불 내려오기
-                     BossFireRain();
-                     break;
+                //공격 3 패턴 - 불기둥 한번에
+                
+                break;
         }
-}
-    private void BossTelePort()
+    }
+    /*private void BossTelePort()
     {
         StartCoroutine("BossTel");
         p = false;
@@ -241,7 +239,7 @@ private void BossAI()
         rb.AddForce(new Vector3(0, -0.001f, 0), ForceMode2D.Impulse);
         EfxAnim.SetTrigger("ExposionEfx");
         anim.SetTrigger("JumpAttack");
-    }
+    }*/
     IEnumerator Blink(float num = 2)
     {
         for (int i = 0; i < num; i++)
@@ -253,7 +251,7 @@ private void BossAI()
         }
     }
 
-    //몸통 박치기
+    /*몸통 박치기
     private void BossStrike()
     {
         FaceTarget();
@@ -264,7 +262,7 @@ private void BossAI()
         p = false;
         state = State.Chase;
     }
-
+   
     IEnumerator Dash()
     {
         for (int i = 0; i < 100; i++)
@@ -272,11 +270,53 @@ private void BossAI()
             this.transform.position = Vector3.Lerp(this.transform.position, PlayerTarget.transform.position, 0.01f);
             yield return 0;
         }
-    }
+    } */
     //보스 패턴 형식
     //불꽃 뿜기
 
-    private void BossAttack()
+    //불기둥 장판
+    private void FireTowerCount()
+    {
+        FaceTarget();
+        anim.SetTrigger("");
+        EfxAnim.SetTrigger("");
+        StartCoroutine("TowerCount");
+        p = false;
+        state = State.Chase;
+    }
+    IEnumerator TowerCount()
+    {
+        anim.SetTrigger("Jump");
+        EfxAnim.SetTrigger("ExposionEfx");
+        rb.AddForce(new Vector3(0, 0.001f, 0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.4f);
+        rb.AddForce(new Vector3(0, -0.002f, 0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.4f);
+
+        //StartCoroutine(Blink(3));
+        yield return new WaitForSeconds(0.5f);
+        GameObject Fire;
+        for (int i = 0; i < fireTowernum; i++)
+        {
+            Fire = Instantiate(FireFactory[0]);
+            //Fire.transform.position
+        }
+    }
+
+
+    private void FireTowerOnce()
+    {
+        FaceTarget();
+
+    }
+
+
+    private void FireBreathe()
+    {
+        FaceTarget();
+    }
+
+   /* private void BossAttack()
     {
     FaceTarget();
     anim.SetTrigger("Attack");
@@ -289,7 +329,7 @@ private void BossAI()
         }
         p = false;
         state = State.Chase;
-    }
+    }*/
 
 
 private void BossFireRain()
@@ -299,24 +339,25 @@ private void BossFireRain()
     p = false;
     state = State.Chase;
 }
-IEnumerator FireRain()
-{
-    anim.SetTrigger("Jump");
-    EfxAnim.SetTrigger("ExposionEfx");
-    rb.AddForce(new Vector3(0, 0.001f, 0), ForceMode2D.Impulse);
-    yield return new WaitForSeconds(0.4f);
-    rb.AddForce(new Vector3(0, -0.002f, 0), ForceMode2D.Impulse);
-    yield return new WaitForSeconds(0.4f);
 
-    StartCoroutine(Blink(3));
-    yield return new WaitForSeconds(0.5f);
-    GameObject[] Fire = new GameObject[fireRainfirenum];
-    for (int i = 0; i < fireRainfirenum; i++)
+    IEnumerator FireRain()
     {
-        Fire[i] = Instantiate(FireFactory);
-        Fire[i].transform.position = PlayerTarget.transform.position + new Vector3(-(fireRainfirenum % 2) + i, 5f, 0);
+        anim.SetTrigger("Jump");
+        EfxAnim.SetTrigger("ExposionEfx");
+        rb.AddForce(new Vector3(0, 0.001f, 0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.4f);
+        rb.AddForce(new Vector3(0, -0.002f, 0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.4f);
+        StartCoroutine(Blink(3));
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject Fire;
+            yield return new WaitForSeconds(0.3f);
+            Fire = Instantiate(FireFactory[0]);
+            Fire.transform.position = floorboomPoint.transform.position + new Vector3(i * 3, 2, 0);
+        }
     }
-}
     private void OnCollisionEnter2D(Collision2D collision)
 {
     if (collision.gameObject.CompareTag("Bomb"))

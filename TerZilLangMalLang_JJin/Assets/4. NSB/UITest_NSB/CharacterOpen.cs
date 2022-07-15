@@ -22,7 +22,7 @@ public class CharacterOpen : MonoBehaviour
     public Sprite[] EndingSprite;
 
     public GameObject ButtonOK;
-    GameObject ButtonRobby;
+    public GameObject ButtonRobby;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class CharacterOpen : MonoBehaviour
         ClearImg = ClearUIImg.GetComponent<Image>();
         EndingImg = EndingUIImg.GetComponent<Image>();
         TurnOff();
-
+        StartUIImg.SetActive(true);
 
         
     }
@@ -44,57 +44,55 @@ public class CharacterOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+   public void TriggerCapusle()
+    {
 
-        //게임이 시작되면
-        //미션 UI가 나온다
-
-
-        if (Save_PlayerChoice.instance.save_StageClear == 0)
+        if (AutoSave.instance.gameData.isClear_4 == true)
         {
-            ClearUIImg.SetActive(true);
-            Save_PlayerChoice.instance.isClear_1 = true;
-            print("1단계 클리어");
-        }
-        if (Save_PlayerChoice.instance.save_StageClear == 1)
-        {
-            ClearUIImg.SetActive(true);
-            Save_PlayerChoice.instance.isClear_2 = true;
-            ClearImg.sprite = ClearSprite[1];
-            print("2단계 클리어");
-        }
-        if (Save_PlayerChoice.instance.save_StageClear == 2)
-        {
-            ClearUIImg.SetActive(true);
-            Save_PlayerChoice.instance.isClear_3 = true;
-            ClearImg.sprite = ClearSprite[2];
-            print("3단계 클리어");
-        }
-        if (Save_PlayerChoice.instance.save_StageClear == 3)
-        {
-            ClearUIImg.SetActive(true);
-            Save_PlayerChoice.instance.isClear_4 = true;
-            ClearImg.sprite = ClearSprite[3];
-            print("4단계 클리어");
-        }
-        if (Save_PlayerChoice.instance.save_StageClear == 4)
-        {
-          
+            ButtonRobby.SetActive(false);
             EndingUIImg.SetActive(true);
             print("5단계 클리어");
         }
+        else if (AutoSave.instance.gameData.isClear_3 == true)
+        {
+            ClearUIImg.SetActive(true);
+          
+            AutoSave.instance.gameData.isClear_4 = true;
+            ClearImg.sprite = ClearSprite[3];
+            print("4단계 클리어");
+        }
+        else if (AutoSave.instance.gameData.isClear_2 == true)
+        {
+            ClearUIImg.SetActive(true);
+         
+            AutoSave.instance.gameData.isClear_3 = true;
+            ClearImg.sprite = ClearSprite[2];
+            print("3단계 클리어");
+        }
+        else if (AutoSave.instance.gameData.isClear_1 == true)
+        {
+            ClearUIImg.SetActive(true);
+           
+            AutoSave.instance.gameData.isClear_2 = true;
+            ClearImg.sprite = ClearSprite[1];
+            print("2단계 클리어");
+        }
 
-
-        //캡슐을 먹으면
-
-
-        //플레이어 hp가 0이되면
-        //GameOverUI();
+        else if (AutoSave.instance.gameData.isClear_1 == false)
+        {
+            ClearUIImg.SetActive(true);
+            AutoSave.instance.gameData.isClear_1 = true;
+            print("1단계 클리어");
+        }
+    
+    
+      
     }
 
-    
-
-    void GameOverUI()
+    public void GameOverUI()
     {
         GameOverUIImg.SetActive(true);
     }
@@ -114,7 +112,9 @@ public class CharacterOpen : MonoBehaviour
     public void EndingTicket()
     {
         EndingImg.sprite = EndingSprite[1];
-        print("화이팅!");
-       
+        ButtonOK.SetActive(false);
+        ButtonRobby.SetActive(true);
+        AutoSave.instance.gameData.isClear_5= true;
+
     }
 }

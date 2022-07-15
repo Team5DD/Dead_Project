@@ -113,13 +113,17 @@ public class AutoSave : MonoBehaviour
         print("2는 " + gameData.isClear_2);
         print("3는 " + gameData.isClear_3);
         print("4는 " + gameData.isClear_4);
-       
+        print(filePath);
     }
 
     void Update()
     {
         DontDestroyOnLoad(this);
-
+        print("1"+gameData.isClear_1);
+        print("2" + gameData.isClear_2);
+        print("3" + gameData.isClear_3);
+        print("4" + gameData.isClear_4);
+        print("5" + gameData.isClear_5);
     }
 
     // 게임을 종료하면 자동저장되도록

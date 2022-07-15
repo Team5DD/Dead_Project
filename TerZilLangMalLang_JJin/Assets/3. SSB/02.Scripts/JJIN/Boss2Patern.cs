@@ -47,11 +47,9 @@ public class Boss2Patern : MonoBehaviour
     void Start()
     {
 
-        PlayerTarget = GameObject.Find("Player");
+        PlayerTarget = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody2D>();
-        UIManager.instance.GetCrowUI.SetActive(false);
-        UIManager.instance.SuccessUI.SetActive(false);
         Distance = PlayerTarget.transform.position.x - transform.position.x;
         Capsule.SetActive(false);
         spriterenderer = this.gameObject.GetComponent<SpriteRenderer>();

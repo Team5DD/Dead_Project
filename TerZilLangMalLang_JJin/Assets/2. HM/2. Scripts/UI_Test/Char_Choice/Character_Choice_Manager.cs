@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Character
 {
+    
     public GameObject char_Img;
     public GameObject char_Info;
     public string name;
@@ -26,6 +27,7 @@ public class Character
 
 public class Character_Choice_Manager : MonoBehaviour
 {
+    AudioSource ads;
     GameObject findobject;
     public GameObject savePrefeb;
     public GameObject[] character_Img; // 캐릭터 이미지 배열
@@ -57,6 +59,8 @@ public class Character_Choice_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ads = GetComponent<AudioSource>();
+
         character_Img[selectCharCount].SetActive(true); // 0번 캐릭터 이미지 활성화
         character_Info[selectCharCount].SetActive(true);
         characterChoice = new Dictionary<int, Character>();
@@ -185,6 +189,7 @@ public class Character_Choice_Manager : MonoBehaviour
     //왼쪽 버튼 클릭
     public void LeftBtn_Clik()
     {
+        ads.Play();
         selectCharCount--;
         if (selectCharCount < 0)
         {
@@ -208,6 +213,7 @@ public class Character_Choice_Manager : MonoBehaviour
     //오른쪽 버튼 클릭
     public void RightBtn_Clik()
     {
+        ads.Play();
         selectCharCount++;
         selectCharCount %= 5;
 
@@ -228,6 +234,7 @@ public class Character_Choice_Manager : MonoBehaviour
     //게임스타트 버튼 클릭
     public void GameStart_Clik()
     {
+        ads.Play();
         if (characterChoice.ContainsKey(selectCharCount))
         {
             Character choiceNow = characterChoice[selectCharCount];
@@ -245,6 +252,7 @@ public class Character_Choice_Manager : MonoBehaviour
 
     public void TicketClik()
     {
+        ads.Play();
         ticket_FullSize.SetActive(true);
     }
 

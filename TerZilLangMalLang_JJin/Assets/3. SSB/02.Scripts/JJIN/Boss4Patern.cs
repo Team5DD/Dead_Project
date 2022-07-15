@@ -54,11 +54,9 @@ public class Boss4Patern : MonoBehaviour
     void Start()
     { 
         SpawnPosition = GameObject.Find("FlyKickSpawnPosition").transform.GetComponentsInChildren<Transform>();
-        PlayerTarget = GameObject.Find("Player");
+        PlayerTarget = GameObject.FindWithTag("Player");
         anim = GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody2D>();
-        UIManager.instance.GetCrowUI.SetActive(false);
-        UIManager.instance.SuccessUI.SetActive(false);
         Distance = PlayerTarget.transform.position.x - transform.position.x;
         spriterenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }

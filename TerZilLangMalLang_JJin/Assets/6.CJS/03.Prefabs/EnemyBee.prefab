@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 945462340}
   - component: {fileID: 945462341}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: CharcterCol
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 6637353052136724744}
   m_Layer: 7
   m_Name: EnemyBee
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

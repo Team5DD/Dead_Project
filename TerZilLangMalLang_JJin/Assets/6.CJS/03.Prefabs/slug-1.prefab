@@ -85,9 +85,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6395549401551516891}
   - component: {fileID: 1747156044693804442}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CharcterCol
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: -901247516165798271}
   m_Layer: 7
   m_Name: slug-1
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,7 +9,7 @@ public class HM_Lobby : MonoBehaviour
     //Animator anim;
     SpriteRenderer spriteRenderer;
 
-    public GameObject chatmessage;
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -66,10 +66,10 @@ public class HM_Lobby : MonoBehaviour
     {
         float a = Random.Range(3, 10);
         yield return new WaitForSeconds(a);
-        chatmessage.SetActive(true);
+        
 
         yield return new WaitForSeconds(2f);
-        chatmessage.SetActive(false);
+        
         StartCoroutine(ChatMessage());
     }
 }

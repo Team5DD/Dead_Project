@@ -11,6 +11,8 @@ public class HM_Typing_Word : MonoBehaviour
     public GameObject txt1;
     public GameObject txt2;
 
+    AudioSource typingaudio;
+
      string message;
      string temp_message;
     public float speed = 0.2f;
@@ -20,6 +22,8 @@ public class HM_Typing_Word : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        typingaudio = GetComponent<AudioSource>();
+
         txt_1.text = "";
         message = "평화로운 장난감 세상에서 개성 넘치는 메타 토이 드래곤들이 살아가고 있었다.\n그들은 각자의 능력을 이용해, 왕관의 주인이 되어 장난감 세상의 왕좌에 오르기 위해 노력하고 있었다.";
 
@@ -28,6 +32,7 @@ public class HM_Typing_Word : MonoBehaviour
 
     IEnumerator TypingAction()
     {
+        typingaudio.Play();
         for(int i =0; i<message.Length; i++)
         {
             yield return new WaitForSeconds(0.05f);
@@ -36,7 +41,7 @@ public class HM_Typing_Word : MonoBehaviour
             txt_1.text = temp_message;
             temp_message = "";
         }
-
+        typingaudio.Stop();
         yield return new WaitForSeconds(1f);
 
         txt1.SetActive(false);

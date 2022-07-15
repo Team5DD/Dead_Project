@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class Fire_FloorBoom : MonoBehaviour
 {
-    public static Fire instance;
+    public static Fire_FloorBoom instance;
     private void Awake()
     {
         instance = this;
@@ -18,17 +18,13 @@ public class Fire : MonoBehaviour
     float scaleValue = 0.1f;
     bool isShot;
     float fireyRange;
-    public float myTime = 5f;
+    public float myTime = 1f;
     float curTime;
     public GameObject PlayerTarget;
 
     // Start is called before the first frame update
     void Start()
     {
-        fireyRange = Random.Range(-0.3f, 0.3f);
-        PlayerTarget = GameObject.FindGameObjectWithTag("Player");
-        this.transform.localScale = new Vector3(1, 1, 1);
-        this.transform.right = (PlayerTarget.transform.position - this.transform.position).normalized;
         
     }
 
@@ -40,7 +36,7 @@ public class Fire : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        this.transform.localPosition += (this.transform.right+new Vector3(0, fireyRange, 0)) * 0.03f;
+        //this.transform.localPosition += (this.transform.right) * 0.03f;
        // rigid.AddForce(Vector2.right * 0.01f, ForceMode2D.Impulse);
     }
 /*

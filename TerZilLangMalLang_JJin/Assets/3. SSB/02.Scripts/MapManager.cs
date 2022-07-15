@@ -32,7 +32,7 @@ public class MapManager : MonoBehaviour
     IEnumerator _OnColBox()
     {
         yield return new WaitForSeconds(0.1f);
-        CameraShake.instance.ShakeCamera(0.5f, 1f);
+        //CameraShake.instance.ShakeCamera(0.5f, 1f);
         for (int k= 0; k < ColBoxAnim.Length; k++)
         {
             ColBoxAnim[k].SetTrigger("ColBox");
@@ -56,7 +56,7 @@ public void OffColBox()
     {
 
         yield return new WaitForSeconds(0.1f);
-        CameraShake.instance.ShakeCamera(0.5f, 1f);
+        //CameraShake.instance.ShakeCamera(0.5f, 1f);
         for (int k = 0; k < ColBoxAnim.Length; k++)
         {
             ColBoxAnim[k].SetTrigger("ColBox");

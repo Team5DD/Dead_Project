@@ -31,13 +31,23 @@ public class PlayerHP : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
     }
 
+    private void Update()
+    {
+        if(damagecount == 10)
+        {
+            Time.timeScale = 0;
+            CharacterOpen.instance.GameOverUI();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             StartCoroutine("blink");
             damagecount++;
-            playerHP[damagecount].gameObject.SetActive(false);
+            playerHP[damagecount-1].gameObject.SetActive(false);
+            
         }
 
     }

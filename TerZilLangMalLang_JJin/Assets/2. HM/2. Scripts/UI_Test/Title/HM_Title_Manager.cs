@@ -10,14 +10,18 @@ public class HM_Title_Manager : MonoBehaviour
     public GameObject savePrefeb;
     public GameObject title_UI;
     public GameObject char_Choice_UI;
-    public GameObject characters;
+    public GameObject allcharacters;
     public GameObject backGround;
     public GameObject typing_UI;
 
+    public GameObject[] characaters;
+
     public Image image;
     public GameObject gameStart_Btn;
+    public GameObject bgm_title;
 
-    
+    AudioSource aduioSource;
+
     bool titleOff = false;
 
     string ticket_RandNum;
@@ -25,7 +29,7 @@ public class HM_Title_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        aduioSource = GetComponent<AudioSource>();
         findobject = GameObject.Find("Player_Choice_Save(Clone)");
         if (findobject == null)
         {
@@ -33,8 +37,16 @@ public class HM_Title_Manager : MonoBehaviour
             saveFile.transform.position = new Vector3(0, 0, 0);
         }
 
+        GameObject findBGM = GameObject.Find("BGM_Manager(Clone)");
+        if(findBGM == null)
+        {
+            findBGM = Instantiate(bgm_title);
+            findBGM.transform.position = new Vector3(0, 0, 0);
+        }
+
         MakeTicketRanNum();
         AutoSave.instance.TicketRandNum = ticket_RandNum;
+        TurnOnCharacter();
     }
 
     // Update is called once per frame
@@ -50,11 +62,35 @@ public class HM_Title_Manager : MonoBehaviour
             {
                 titleOff = true;
                 char_Choice_UI.SetActive(true);
-                characters.SetActive(true);
+                //characters.SetActive(true);
                 title_UI.SetActive(false);
                 backGround.SetActive(true);
             }
         }
+    }
+
+    void TurnOnCharacter()
+    {
+        if (AutoSave.instance.gameData.isClear_1 == true)
+        {
+            characaters[1].SetActive(true);
+        }
+
+        if (AutoSave.instance.gameData.isClear_2 == true)
+        {
+            characaters[2].SetActive(true);
+        }
+
+        if (AutoSave.instance.gameData.isClear_3 == true)
+        {
+            characaters[3].SetActive(true);
+        }
+
+        if (AutoSave.instance.gameData.isClear_4 == true)
+        {
+            characaters[4].SetActive(true);
+        }
+        
     }
 
     void MakeTicketRanNum()
@@ -71,13 +107,14 @@ public class HM_Title_Manager : MonoBehaviour
 
     public void GameStart_Btn()
     {
+        aduioSource.Play();
         StartCoroutine(FadeOutIn());
         gameStart_Btn.SetActive(false);
     }
 
     IEnumerator FadeOutIn()
     {
-        characters.SetActive(false);
+        allcharacters.SetActive(false);
         float fadeCount = 0;
         while(fadeCount < 1.0f)
         {

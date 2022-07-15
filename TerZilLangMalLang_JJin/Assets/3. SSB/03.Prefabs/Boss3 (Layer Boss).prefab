@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4109026402068002899}
   - component: {fileID: 4806565644520668326}
   - component: {fileID: 5711538675250834417}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss3 (Layer Boss)
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -109,8 +109,8 @@ MonoBehaviour:
   fireRainfirenum: 2
   state: 0
   PlayerTarget: {fileID: 0}
-  AttackDistance: 10
-  FindDistance: 20
+  AttackDistance: 5
+  FindDistance: 5
   ChaseDistance: 5
   nextMove: 0
   FireFactory: {fileID: 2103181642031456569, guid: 489402a30ffc51d46a643e2ba0bac062, type: 3}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 2812731984686901999}
   m_Layer: 0
   m_Name: PlayerCol(Tag Enemy)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
