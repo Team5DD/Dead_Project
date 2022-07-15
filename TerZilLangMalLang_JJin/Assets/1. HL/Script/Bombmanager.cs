@@ -71,6 +71,7 @@ public class Bombmanager : MonoBehaviour
             }
             buttonIT.interactable = false;
             ClickBntNB = true;
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Half") == true)
@@ -79,6 +80,7 @@ public class Bombmanager : MonoBehaviour
             bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Blackjoy") == true)
@@ -87,6 +89,7 @@ public class Bombmanager : MonoBehaviour
             bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Blue") == true)
@@ -95,6 +98,7 @@ public class Bombmanager : MonoBehaviour
             bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Pink") == true)
@@ -103,6 +107,7 @@ public class Bombmanager : MonoBehaviour
             bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
+            Destroy(bomb, 2.5f);
 
         }
 
@@ -114,34 +119,35 @@ public class Bombmanager : MonoBehaviour
         {
             GameObject bomb = Instantiate(sBombFactory[0]);
             bomb.transform.position = firePositon_L.position + new Vector3(0, 1.5f, 0);
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Half") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[1]);
             bomb.transform.position = firePositon_L.position;
-
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Blackjoy") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[2]);
             bomb.transform.position = firePositon_L.position;
-
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Blue") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[3]);
             bomb.transform.position = firePositon_L.position;
-
+            Destroy(bomb, 2.5f);
 
         }
         if (PlayerTag.gameObject.CompareTag("Pink") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[4]);
             bomb.transform.position = firePositon_L.position;
-
+            Destroy(bomb, 2.5f);
 
         }
 
