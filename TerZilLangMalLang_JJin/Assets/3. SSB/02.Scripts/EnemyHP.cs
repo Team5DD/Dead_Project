@@ -73,6 +73,7 @@ public class EnemyHP : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("SBomb"))
         {
+
             StartCoroutine("blink");
             if (HP > 0)
             {
