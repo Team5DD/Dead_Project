@@ -29,8 +29,8 @@ public class AutoSave : MonoBehaviour
         }
     }
 
-    public Sprite[] char_Prefeb;
-    public Sprite char_Prefeb_Choice;
+    public GameObject[] char_Prefeb;
+    public GameObject char_Prefeb_Choice;
     public GameObject save_char_Img;
     public string save_char_Name;
     public int save_nft_Number;
