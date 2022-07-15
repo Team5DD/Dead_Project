@@ -75,14 +75,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   char_Prefeb:
-  - {fileID: 21300000, guid: a89dd0953671fe340bf8794b82c43692, type: 3}
-  - {fileID: 21300000, guid: 76b253e45ef0a8447b1c601353c1e4ef, type: 3}
-  - {fileID: 21300000, guid: a83618e9828821245b0a4a5051bed7ab, type: 3}
-  - {fileID: 21300000, guid: d0595182b31054b44a4eda67359b28e7, type: 3}
-  - {fileID: 21300000, guid: a3a2f541e64b2e146bfec576601c00ba, type: 3}
+  - {fileID: 8853111763574873921, guid: afa233a4b712d3145b140ad0813a7b5e, type: 3}
+  - {fileID: 2957891238413510001, guid: 87d9f4324df5d8e4eab2bafd6b93f11a, type: 3}
+  - {fileID: 5034732408134809484, guid: 91d5d1d70e80e784e865d7a243d813d2, type: 3}
+  - {fileID: 4428539030401632119, guid: 301779c79347e1b4c89536ba3aefa0b2, type: 3}
+  - {fileID: 1598042287701448041, guid: 197c8b43c60698c4fb58dda3d38f590f, type: 3}
   char_Prefeb_Choice: {fileID: 0}
   save_char_Img: {fileID: 0}
   save_char_Name: 
   save_nft_Number: 0
   save_StageClear: 0
+  isTitleSkip: 0
+  TicketRandNum: 
   GameDataFileName: DragonsData.json

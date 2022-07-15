@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class Spwanplayer : MonoBehaviour
 {
-    public GameObject tplayer;
-    SpriteRenderer spriteRender;
+    
+   
     GameObject playerchar;
     AutoSave savePlayer;
 
-    Sprite playerspwan;
-    GameObject spwanpoint;
+    GameObject playerspwan;
+    public GameObject spwanpoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteRender = tplayer.GetComponent<SpriteRenderer>();
-
-
         playerchar = GameObject.Find("Player_Choice_Save(Clone)");
         savePlayer = playerchar.GetComponent<AutoSave>();
         playerspwan = AutoSave.instance.char_Prefeb_Choice;
 
-        spriteRender.sprite = playerspwan;
+        //spriteRender.sprite = playerspwan;
 
-        //GameObject player = Instantiate(playerspwan, spwanpoint.transform);
+        GameObject player = Instantiate(playerspwan);
+        player.transform.position = spwanpoint.transform.position;
     }
 
     // Update is called once per frame
