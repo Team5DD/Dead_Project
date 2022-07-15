@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Bombmanager : MonoBehaviour
 {
-     Transform firePositon;
+    Transform firePositon_L;
+    Transform firePositon_R;
+
     public GameObject[] nBombFactory;
     public GameObject[] sBombFactory;
     public Button buttonIT;
@@ -14,12 +16,14 @@ public class Bombmanager : MonoBehaviour
     bool ClickBntNB = false;
 
     GameObject PlayerTag;
-    
+    SpriteRenderer sprender;
 
     private void Start()
     {
         PlayerTag = GameObject.Find("Player");
-        firePositon = PlayerTag.transform.GetChild(0);
+        sprender = PlayerTag.GetComponent<SpriteRenderer>();
+        firePositon_L = PlayerTag.transform.GetChild(0);
+        firePositon_R = PlayerTag.transform.GetChild(1);
     }
 
     void Update()
@@ -57,7 +61,14 @@ public class Bombmanager : MonoBehaviour
         if (PlayerTag.gameObject.CompareTag("Yellow") == true)
         {
             GameObject bomb = Instantiate(nBombFactory[0]);
-            bomb.transform.position = firePositon.position;
+            if (sprender.flipX == true)
+            {
+                bomb.transform.position = firePositon_L.position;
+            }
+            else
+            {
+                bomb.transform.position = firePositon_R.position;
+            }
             buttonIT.interactable = false;
             ClickBntNB = true;
 
@@ -65,7 +76,7 @@ public class Bombmanager : MonoBehaviour
         if (PlayerTag.gameObject.CompareTag("Half") == true)
         {
             GameObject bomb = Instantiate(nBombFactory[1]);
-            bomb.transform.position = firePositon.position;
+            bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
@@ -73,7 +84,7 @@ public class Bombmanager : MonoBehaviour
         if (PlayerTag.gameObject.CompareTag("Blackjoy") == true)
         {
             GameObject bomb = Instantiate(nBombFactory[2]);
-            bomb.transform.position = firePositon.position;
+            bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
@@ -81,7 +92,7 @@ public class Bombmanager : MonoBehaviour
         if (PlayerTag.gameObject.CompareTag("Blue") == true)
         {
             GameObject bomb = Instantiate(nBombFactory[3]);
-            bomb.transform.position = firePositon.position;
+            bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
@@ -89,7 +100,7 @@ public class Bombmanager : MonoBehaviour
         if (PlayerTag.gameObject.CompareTag("Pink") == true)
         {
             GameObject bomb = Instantiate(nBombFactory[4]);
-            bomb.transform.position = firePositon.position;
+            bomb.transform.position = firePositon_L.position;
             buttonIT.interactable = false;
             ClickBntNB = true;
 
@@ -102,35 +113,35 @@ public class Bombmanager : MonoBehaviour
         if (PlayerTag.gameObject.CompareTag("Yellow") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[0]);
-            bomb.transform.position = firePositon.position + new Vector3(0,1.5f,0);
+            bomb.transform.position = firePositon_L.position + new Vector3(0, 1.5f, 0);
 
         }
         if (PlayerTag.gameObject.CompareTag("Half") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[1]);
-            bomb.transform.position = firePositon.position;
-            
+            bomb.transform.position = firePositon_L.position;
+
 
         }
         if (PlayerTag.gameObject.CompareTag("Blackjoy") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[2]);
-            bomb.transform.position = firePositon.position;
-          
+            bomb.transform.position = firePositon_L.position;
+
 
         }
         if (PlayerTag.gameObject.CompareTag("Blue") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[3]);
-            bomb.transform.position = firePositon.position;
+            bomb.transform.position = firePositon_L.position;
 
 
         }
         if (PlayerTag.gameObject.CompareTag("Pink") == true)
         {
             GameObject bomb = Instantiate(sBombFactory[4]);
-            bomb.transform.position = firePositon.position;
- 
+            bomb.transform.position = firePositon_L.position;
+
 
         }
 

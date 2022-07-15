@@ -68,13 +68,14 @@ public class VirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler,
 				sr.flipX = false;	
 				//왼쪽 이미지= flip off
 				
+				
 			}
 			else if (touchPosition.x > 0)
 			{
 				sr.flipX = true;
 				//오른쪽 이미지 = flip on
-				
 
+				
 			}
 
 			//만약 중심(0)보다 크다면 오른쪽을 바라본다.

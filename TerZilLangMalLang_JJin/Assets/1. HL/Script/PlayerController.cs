@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
         {
             transform.position += new Vector3(x, 0, 0) * moveSpeed * Time.deltaTime;
         }
+
+      
     }
 
     void FaceTarget()
