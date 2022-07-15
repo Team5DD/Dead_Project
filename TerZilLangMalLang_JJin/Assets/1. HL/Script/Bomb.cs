@@ -49,8 +49,8 @@ public class Bomb : MonoBehaviour
         if (enemy != null)
         {
             BossHP.instance.HP -= getDamage_NB; // 보스의 HP 많이 까임
+        }
 
         }
-    }
 
 }

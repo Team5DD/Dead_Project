@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject playerHP;
 
+    bool isRight = true;
+   
+
 
     public void Start()
     {
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
         if (x != 0)
         {
             transform.position += new Vector3(x, 0, 0) * moveSpeed * Time.deltaTime;
+            isRight = x > 0 ? true : false;
         }
 
       
@@ -69,71 +73,71 @@ public class PlayerController : MonoBehaviour
     //생성된 이펙트는 움직인다 => 애니메이션
     public GameObject[] effectFactoy;
 
-    public void AttackEffect_yellow()
-    {
-        Debug.Log("노랑이공격");
-        if (gameObject.CompareTag("Yellow") == true)
-        {
-            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
-            //GameObject[] effect = Instantiate(effectFactoy)[0];
-            //effect.transform.position = effectFactoy.transform.position;
+    //public void AttackEffect_yellow()
+    //{
+    //    Debug.Log("노랑이공격");
+    //    if (gameObject.CompareTag("Yellow") == true)
+    //    {
+    //        //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+    //        //GameObject[] effect = Instantiate(effectFactoy)[0];
+    //        //effect.transform.position = effectFactoy.transform.position;
 
-        }
+    //    }
 
-    }
+    //}
 
 
-    public void AttackEffect_half()
-    {
-        Debug.Log("반쪽공격");
-        if (gameObject.CompareTag("Half") == true)
-        {
-            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
-            //GameObject[] effect = Instantiate(effectFactoy)[0];
-            //effect.transform.position = effectFactoy.transform.position;
+    //public void AttackEffect_half()
+    //{
+    //    Debug.Log("반쪽공격");
+    //    if (gameObject.CompareTag("Half") == true)
+    //    {
+    //        //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+    //        //GameObject[] effect = Instantiate(effectFactoy)[0];
+    //        //effect.transform.position = effectFactoy.transform.position;
 
-        }
+    //    }
 
-    }
+    //}
 
-    public void AttackEffect_Blue()
-    {
-        Debug.Log("파랑이공격");
-        if (gameObject.CompareTag("Blue") == true)
-        {
-            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
-            //GameObject[] effect = Instantiate(effectFactoy)[0];
-            //effect.transform.position = effectFactoy.transform.position;
+    //public void AttackEffect_Blue()
+    //{
+    //    Debug.Log("파랑이공격");
+    //    if (gameObject.CompareTag("Blue") == true)
+    //    {
+    //        //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+    //        //GameObject[] effect = Instantiate(effectFactoy)[0];
+    //        //effect.transform.position = effectFactoy.transform.position;
 
-        }
+    //    }
 
-    }
+    //}
 
-    public void AttackEffect_Blackjoy()
-    {
-        Debug.Log("검정조이공격");
-        if (gameObject.CompareTag("Blackjoy") == true)
-        {
-            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
-            //GameObject[] effect = Instantiate(effectFactoy)[0];
-            //effect.transform.position = effectFactoy.transform.position;
+    //public void AttackEffect_Blackjoy()
+    //{
+    //    Debug.Log("검정조이공격");
+    //    if (gameObject.CompareTag("Blackjoy") == true)
+    //    {
+    //        //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+    //        //GameObject[] effect = Instantiate(effectFactoy)[0];
+    //        //effect.transform.position = effectFactoy.transform.position;
 
-        }
+    //    }
 
-    }
+    //}
 
-    public void AttackEffect_Pink()
-    {
-        Debug.Log("핑크공격");
-        if (gameObject.CompareTag("Pink") == true)
-        {
-            //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
-            //GameObject[] effect = Instantiate(effectFactoy)[0];
-            //effect.transform.position = effectFactoy.transform.position;
+    //public void AttackEffect_Pink()
+    //{
+    //    Debug.Log("핑크공격");
+    //    if (gameObject.CompareTag("Pink") == true)
+    //    {
+    //        //만약 노랑이가 맞다면 인덱스0번째 프리펩 생성
+    //        //GameObject[] effect = Instantiate(effectFactoy)[0];
+    //        //effect.transform.position = effectFactoy.transform.position;
 
-        }
+    //    }
 
-    }
+    //}
 
 
     public void OnButtonDown()

@@ -68,6 +68,8 @@ public class EnemyMove : MonoBehaviour
         CancelInvoke(); //모든 Invoke()를 멈추는 함수
         Invoke("Think", 1);
     }
+
+   
 }
 
 

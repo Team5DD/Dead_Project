@@ -7,43 +7,53 @@ public class Bomb2 : MonoBehaviour
     public float speed = 5f;
     public int getDamage_NB = 10;
 
-    GameObject player;
-    SpriteRenderer sprender;
+
+
+    public GameObject Bomb;
+    SpriteRenderer BombSR;
+
+    int xDir;
+
+    private void Awake()
+    {
+        BombSR = Bomb.GetComponent<SpriteRenderer>();
+    }
 
 
     void Start()
     {
-        player = GameObject.Find("Player");
-        sprender = player.GetComponent<SpriteRenderer>();
+       
+        Invoke("DestroyBomb", 2f);
     }
 
     void Update()
     {
-        //this.transform.position += -transform.right * speed * Time.deltaTime;
-
-        if (sprender.flipX == false)
-        {
-            this.transform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime;
-        }
-        else
-        {
-            this.transform.position += new Vector3(1, 0, 0) * speed * Time.deltaTime;
-
-        }
+      
+        transform.Translate(Vector3.right * xDir * (speed * Time.deltaTime));
     }
 
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetDirection(bool isRight)
     {
-        //수빈이 적 스크립트
-        //일반공격은 적의 HP를 적게 깜
-        //BossPatern
-        BossPatern enemy = collision.GetComponent<BossPatern>();
-        if (enemy != null)
-        {
-            BossHP.instance.HP -= getDamage_NB; // 보스의 HP 많이 까임
+        BombSR.flipX = isRight;
+        xDir = isRight ? 1 : -1;
+    }
 
+
+
+    void DestroyBomb()
+    {
+        Destroy(gameObject);
+    }
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(this.gameObject);
         }
     }
+
+
 }
