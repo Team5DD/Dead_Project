@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 
 
-public class BossPatern2 : MonoBehaviour
+public class Boss1Patern : MonoBehaviour
 {
-    public static BossPatern2 instance;
+    public static Boss1Patern instance;
     private void Awake()
     {
         instance = this;
@@ -19,17 +19,11 @@ public class BossPatern2 : MonoBehaviour
     public enum State
     {
         Idle,
-
         Pattern,
-
         Move,
         TakeDamage,
-
         Die,
-
         Chase,
-
-
     }
 
     public GameObject PlayerTarget;
@@ -115,7 +109,7 @@ public class BossPatern2 : MonoBehaviour
         if (p == false)
         {
             p = true;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2.5f);
             state = State.Pattern;
         }
     }
@@ -246,12 +240,11 @@ private void BossAI()
         anim.SetTrigger("Idle");
         //보스 상태가 공격 상태일때만 실행된다.
         print("BossAI");
-        int randAction = UnityEngine.Random.Range(0, 4);
+        int randAction = UnityEngine.Random.Range(0, 2);
 
 
         switch (randAction)
         {
-
             case 0:
                      //공격 0 패턴 - Blink 후  Player 위로 순간이동 후 떨어지기
                      BossTelePort();
@@ -260,15 +253,13 @@ private void BossAI()
                      //공격 1 패턴 - 불꽃 뿜기                  
                      BossAttack();
                      break;
-
             case 2:
                      //공격 2 패턴 - 몸통 박치기
-                     BossStrike();
+                     //BossStrike();
                      break;
-
             case 3:
                      //공격 3 패턴 - Player 머리위에서 일정 간격으로 불 내려오기
-                     BossFireRain();
+                    // BossFireRain();
                      break;
         }
 }
@@ -311,9 +302,7 @@ private void BossAI()
         
         yield return new WaitForSeconds(0.5f);
         this.transform.position = PlayerTarget.transform.position + new Vector3(0, 3, 0);
-        
         rb.bodyType = RigidbodyType2D.Kinematic;
-
         StartCoroutine(Blink(2));
         yield return new WaitForSeconds(0.3f);
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -335,19 +324,24 @@ private void BossAI()
     //불꽃 뿜기
     private void BossAttack()
     {
-    FaceTarget();
-    anim.SetTrigger("Attack");
-    EfxAnim.SetTrigger("AttackEfx");
-
-        GameObject[] Fire = new GameObject[bossAttackfirenum];
-        for (int i=0; i < bossAttackfirenum; i++) {
-          Fire[i] = Instantiate(FireFactory);
-          Fire[i].transform.position = FirePosiotion.transform.position;
-        }
-        p = false;
+        FaceTarget();
+        anim.SetTrigger("Attack");
+        EfxAnim.SetTrigger("AttackEfx");
+        StartCoroutine("Attack");
+        p = false; 
         state = State.Chase;
-        
-
+    }
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(0.3f);
+        GameObject[] Fire = new GameObject[bossAttackfirenum];
+        for (int i = 0; i < bossAttackfirenum; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            Fire[i] = Instantiate(FireFactory);
+            Fire[i].transform.position = FirePosiotion.transform.position;
+        }
+        yield return 0;
     }
 
 //몸통 박치기
@@ -390,11 +384,11 @@ private void OnCollisionEnter2D(Collision2D collision)
     {
         spriterenderer.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        spriterenderer.color = Color.white;
+        spriterenderer.color = Color.green;
         yield return new WaitForSeconds(0.1f);
         spriterenderer.color = Color.red;
         yield return new WaitForSeconds(0.2f);
-        spriterenderer.color = Color.white;
+        spriterenderer.color = Color.green;
         yield return new WaitForSeconds(0.1f);
     }
 }
