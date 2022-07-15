@@ -19,6 +19,8 @@ public class Save_PlayerChoice : MonoBehaviour
     public bool isClear_3 = false;
     public bool isClear_4 = false;
 
+
+    
     private void Awake()
     {
         instance = this;

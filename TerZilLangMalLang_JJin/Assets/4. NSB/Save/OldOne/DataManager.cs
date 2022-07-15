@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class PlayerData
-{
+
     // 이름, 레벨, 코인, 착용중인 무기
-    public string CharacterName = "엔젤";
-    public int Crown;
-    public int PlayerHP;
-    public int PlayerPosition; //포지션 받아와야함
+    
+    
 }
 
 public class DataManager : MonoBehaviour
