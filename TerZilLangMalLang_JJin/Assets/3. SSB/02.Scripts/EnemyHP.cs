@@ -10,7 +10,7 @@ public class EnemyHP : MonoBehaviour
     {
         instance = this;
     }
-
+    SpriteRenderer sp;
     public int maxHP = 100;
     public Slider sliderEnemyHP;
     int hp;
@@ -31,6 +31,7 @@ public class EnemyHP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sp = this.GetComponent<SpriteRenderer>();
         sliderEnemyHP = this.gameObject.GetComponentInChildren<Slider>();
         sliderEnemyHP.maxValue = maxHP;
         HP = maxHP;
@@ -39,17 +40,28 @@ public class EnemyHP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HP == 0)
+        if (HP <= 0)
         {
             Destroy(this.gameObject);
         }
     }
-
+    IEnumerator blink()
+    {
+        sp.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        sp.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        sp.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        sp.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.CompareTag("Bomb"))
         {
+            StartCoroutine("blink");
             if (HP > 0)
             {
                 HP -= BombAttack;
@@ -61,6 +73,7 @@ public class EnemyHP : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("SBomb"))
         {
+            StartCoroutine("blink");
             if (HP > 0)
             {
                 HP -= SBombAttack;
@@ -68,7 +81,6 @@ public class EnemyHP : MonoBehaviour
             else
             {
                 Destroy(collision.gameObject);
-
             }
         }
     }

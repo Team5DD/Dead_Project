@@ -12,7 +12,7 @@ public class Bomb : MonoBehaviour
     Rigidbody2D rigid;
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         sprender = player.GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
 

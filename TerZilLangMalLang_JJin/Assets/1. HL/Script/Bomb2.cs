@@ -9,14 +9,13 @@ public class Bomb2 : MonoBehaviour
 
 
 
-    public GameObject Bomb;
     SpriteRenderer BombSR;
 
     int xDir;
 
     private void Awake()
     {
-        BombSR = Bomb.GetComponent<SpriteRenderer>();
+        BombSR = this.GetComponent<SpriteRenderer>();
     }
 
 
@@ -34,7 +33,7 @@ public class Bomb2 : MonoBehaviour
 
     public void SetDirection(bool isRight)
     {
-        BombSR.flipX = isRight;
+        BombSR.flipX = !isRight;
         xDir = isRight ? 1 : -1;
     }
 

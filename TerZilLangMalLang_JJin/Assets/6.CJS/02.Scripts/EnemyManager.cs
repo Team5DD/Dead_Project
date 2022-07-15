@@ -9,7 +9,6 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] Enemy;
     GameObject[] Enemy2;
     Transform[] SpawnPoint;
-    
     void EnemyRandomSpawn()
     {
         int enemycount = 0;

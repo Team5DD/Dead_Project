@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3773173028597958600}
-  - component: {fileID: -5696381146451116962}
   - component: {fileID: 7522601992905432801}
   - component: {fileID: 3773173028597958601}
   - component: {fileID: 3773173028597958606}
@@ -30,25 +29,11 @@ Transform:
   m_GameObject: {fileID: 3773173028597958607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 14.090675, y: 14.090675, z: 14.090675}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5696381146451116962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3773173028597958607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fce89a633924ff4ebec8f85581d327e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  getDamage_NB: 10
 --- !u!114 &7522601992905432801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   getDamage_NB: 10
-  Bomb: {fileID: 3773173028597958607}
 --- !u!212 &3773173028597958601
 SpriteRenderer:
   m_ObjectHideFlags: 0

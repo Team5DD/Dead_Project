@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7624571390087727478}
   - component: {fileID: 8651437601655696177}
-  - component: {fileID: 1754916068396093012}
   - component: {fileID: 4982704907962957021}
   - component: {fileID: -458079036813532280}
+  - component: {fileID: 813170124549736414}
   m_Layer: 0
   m_Name: Bomb04
   m_TagString: Bomb
@@ -85,20 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1754916068396093012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2914058647173303988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fce89a633924ff4ebec8f85581d327e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  getDamage_NB: 10
 --- !u!95 &4982704907962957021
 Animator:
   serializedVersion: 3
@@ -144,3 +130,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.63, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &813170124549736414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2914058647173303988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d68258e823739a49af951762e2f1c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  getDamage_NB: 10
