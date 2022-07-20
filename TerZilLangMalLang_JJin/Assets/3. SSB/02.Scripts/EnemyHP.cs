@@ -11,12 +11,12 @@ public class EnemyHP : MonoBehaviour
         instance = this;
     }
     SpriteRenderer sp;
-    public int maxHP = 100;
+    public int maxHP = 60;
     public Slider sliderEnemyHP;
     int hp;
 
-    [SerializeField] int BombAttack=10;
-    [SerializeField] int SBombAttack = 25;
+    [SerializeField] int BombAttack=20;
+    [SerializeField] int SBombAttack = 40;
 
     public int HP
     {
