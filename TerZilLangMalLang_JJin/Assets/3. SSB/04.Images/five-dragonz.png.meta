@@ -39,6 +39,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -232,6 +233,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      five-dragonz_0: -9048472360496584353
+      five-dragonz_3: 5708096950099920381
+      five-dragonz_1: 8663209025571405709
+      five-dragonz_2: 1072148393368247990
+      five-dragonz_4: 9631738155155279
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
