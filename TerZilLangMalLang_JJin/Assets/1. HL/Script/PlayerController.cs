@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     private bool IsJump;
 
     bool isRight = true;
-   
+
+    public Camera[] Camera;     //0. 플레이어이 메인 카메라 , 1.새로운 베경 카메라
 
 
     public void Start()
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
         virtualJoystick = GameObject.Find("PlayerCanvas").transform.GetChild(0).GetComponent<VirtualJoystick>();
         rigid2d = GetComponent<Rigidbody2D>();
         JumpCount = 2;
+        Camera[0] = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>();
+        Camera[1] = GameObject.Find("Camera").GetComponent<Camera>();
     }
 
     private void Update()
@@ -68,6 +71,8 @@ public class PlayerController : MonoBehaviour
 
             Destroy(collision.gameObject);
             MapManager.instance.OnColBox();
+            Camera[0].gameObject.SetActive(false);
+            Camera[1].gameObject.SetActive(true);
         }
         if (collision.gameObject.CompareTag("AfterCol"))
         {
