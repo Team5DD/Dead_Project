@@ -42,8 +42,12 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+<<<<<<< Updated upstream
         
 
         }
+=======
+>>>>>>> Stashed changes
 
+    }
 }

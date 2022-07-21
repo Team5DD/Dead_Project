@@ -200,8 +200,13 @@ public class Boss5Patern : MonoBehaviour
         switch (randAction)
         {
             case 0:
+<<<<<<< Updated upstream
                 //공격 0 패턴 - 불꽃비가 내려와~~~~
                 BossFireRain();
+=======
+                //공격 0 패턴 -  불기둥 순차적으로
+               // FireTowerCount();
+>>>>>>> Stashed changes
                 break;
             case 1:
                 //공격 1 패턴 - 브레스 공격                 
@@ -209,7 +214,11 @@ public class Boss5Patern : MonoBehaviour
                 break;
 
             case 2:
+<<<<<<< Updated upstream
                 FireTowerCount();
+=======
+                FireTowerOnce();
+>>>>>>> Stashed changes
                 //공격 2 패턴 - 불기둥 순차적으로
 
                 break;
@@ -275,6 +284,7 @@ public class Boss5Patern : MonoBehaviour
     //불꽃 뿜기
 
     //불기둥 장판
+<<<<<<< Updated upstream
     private void FireTowerCount()
     {
         FaceTarget();
@@ -285,6 +295,20 @@ public class Boss5Patern : MonoBehaviour
         state = State.Chase;
     }
     IEnumerator TowerCount()
+=======
+
+ 
+
+
+    private void FireTowerOnce()
+    {
+        StartCoroutine("FireTowerOnce111");
+        //점프 했다가 내려오면 불 내려오기
+        p = false;
+        state = State.Chase;
+    }
+    IEnumerator FireTowerOnce111()
+>>>>>>> Stashed changes
     {
         anim.SetTrigger("Jump");
         EfxAnim.SetTrigger("ExposionEfx");
@@ -292,6 +316,7 @@ public class Boss5Patern : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         rb.AddForce(new Vector3(0, -0.002f, 0), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.4f);
+<<<<<<< Updated upstream
 
         //StartCoroutine(Blink(3));
         yield return new WaitForSeconds(0.5f);
@@ -311,6 +336,19 @@ public class Boss5Patern : MonoBehaviour
     }
 
 
+=======
+        StartCoroutine(Blink(3));
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 5; i++)
+        {
+
+           
+            GameObject Fire = Instantiate(FireFactory[0]);
+            Fire.transform.position = floorboomPoint.transform.position + new Vector3(i * 3, 2, 0);
+        }
+    }
+
+>>>>>>> Stashed changes
     private void FireBreathe()
     {
         FaceTarget();
@@ -332,15 +370,19 @@ public class Boss5Patern : MonoBehaviour
     }*/
 
 
-private void BossFireRain()
+private void FireTowerCount()
 {
-    StartCoroutine("FireRain");
+    StartCoroutine("FireTowerCount123");
     //점프 했다가 내려오면 불 내려오기
     p = false;
     state = State.Chase;
 }
 
+<<<<<<< Updated upstream
     IEnumerator FireRain()
+=======
+    IEnumerator FireTowerCount123()
+>>>>>>> Stashed changes
     {
         anim.SetTrigger("Jump");
         EfxAnim.SetTrigger("ExposionEfx");
@@ -350,11 +392,19 @@ private void BossFireRain()
         yield return new WaitForSeconds(0.4f);
         StartCoroutine(Blink(3));
         yield return new WaitForSeconds(0.5f);
+<<<<<<< Updated upstream
         for (int i = 0; i < 10; i++)
         {
             GameObject Fire;
             yield return new WaitForSeconds(0.3f);
             Fire = Instantiate(FireFactory[0]);
+=======
+        for (int i = 0; i < 5; i++)
+        {
+           
+            yield return new WaitForSeconds(0.3f);
+            GameObject Fire = Instantiate(FireFactory[0]);
+>>>>>>> Stashed changes
             Fire.transform.position = floorboomPoint.transform.position + new Vector3(i * 3, 2, 0);
         }
     }

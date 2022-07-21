@@ -25,7 +25,11 @@ public class Bombmanager : MonoBehaviour
         firePositon_L = PlayerTag.transform.GetChild(0);
         firePositon_R = PlayerTag.transform.GetChild(1);
 
+<<<<<<< Updated upstream
         PlayerSR = PlayerTag.gameObject.GetComponent<SpriteRenderer>();
+=======
+       // PlayerSR = Player.gameObject.GetComponent<SpriteRenderer>();
+>>>>>>> Stashed changes
     }
 
     void Update()
