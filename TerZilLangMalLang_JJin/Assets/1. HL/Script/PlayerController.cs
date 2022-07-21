@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     VirtualJoystick virtualJoystick;
     [SerializeField]
     private float moveSpeed = 5;
-    public float jumpPower = 5f;
+    public float jumpPower = 8f;
     Rigidbody2D rigid2d;
 
     public GameObject[] Enemy;
